@@ -15,6 +15,11 @@ export default class Core_SPA_Router{
         this.routes = routes;
         this.route404 = route404;
         this.homeRoute = routes[0];
+
+        this.init();
+    }
+
+    init() {
         window.removeEventListener('hashchange', this.hasChanged);
         window.addEventListener('hashchange', this.hasChanged.bind(this));
         this.hasChanged();

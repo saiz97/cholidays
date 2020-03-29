@@ -7,11 +7,13 @@
  *     Neuwersch - 2020-03-25
  *******************************************************/
 const app = document.getElementById("core_app");
+
 export default class Core_View{
     constructor(slug, template){
-        this.slug = slug;
+        this.slug = slug; //= last part of the url after #
         this.template = template;
 
+        //everytime a page/window gets changed (url) this EventListener gets called
         window.addEventListener("templateChanged", this.listen.bind(this));
     }
 
@@ -34,7 +36,8 @@ export default class Core_View{
     renderMarkup(){
         let self = this;
 
-        $.get(window.Core.system.webRoot+window.Core.system.templatesPath+"/"+this.template+".tpl", function(tpl){
+        $.get(window.Core.system.webRoot + window.Core.system.templatesPath + "/" + this.template+".tpl",
+            function(tpl){
             app.innerHTML = tpl;
             window.dispatchEvent(new CustomEvent("templateChanged", {detail: {slug: self.slug}}))
         })

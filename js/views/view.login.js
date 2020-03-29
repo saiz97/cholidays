@@ -1,5 +1,4 @@
 "use strict";
-
 import Core_View from "../core/core.spa-view.js?v=0.1";
 
 export default class LoginView extends Core_View{
