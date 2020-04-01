@@ -2,7 +2,7 @@
 import Core_SPA_Router from "./core.spa-router.js?v=0.1";
 import Core_Translator from "./core.translator.js?v=0.1";
 import Core_View from "./core.spa-view.js?v=0.1";
-import Core_Utils from "./core.utils";
+import Core_Utils from "./core.utils.js?v=0.1";
 
 /**********************************************************************
  *     Class-Bundle for Web-Apps.

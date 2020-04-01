@@ -2,5 +2,5 @@
 <div class="navigation">
     <a class="active" href="#home">Home</a>
 
-    <button id="logout">logout</button>
+    <button id="logout"><%>logout<%></button>
 </div>

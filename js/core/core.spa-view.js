@@ -47,9 +47,8 @@ export default class Core_View{
 
                 while ((result = marker.exec(tpl))) {
                     if (!firstIndex) firstIndex = result.index;
-                    else secondIndex = result.index;
-
-                    if (secondIndex) {
+                    else {
+                        secondIndex = result.index;
                         marked.push(result.input.substring(firstIndex+3, secondIndex));
                         firstIndex = null;
                         secondIndex = null;
