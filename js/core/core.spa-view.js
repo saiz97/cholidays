@@ -34,13 +34,33 @@ export default class Core_View{
     }
 
     renderMarkup(){
-        let self = this;
+        Core_View.useTemplate(window.Core.system.webRoot + window.Core.system.templatesPath + "/" + this.template + ".tpl", app, this.slug);
+    }
 
-        $.get(window.Core.system.webRoot + window.Core.system.templatesPath + "/" + this.template+".tpl",
-            function(tpl){
-            app.innerHTML = tpl;
-            window.dispatchEvent(new CustomEvent("templateChanged", {detail: {slug: self.slug}}))
-        })
+    static useTemplate(templatePath, container, slug) {
+        $.get(templatePath, function(tpl){
+                let marker = /<%>/gi;
+                let result;
+                let firstIndex;
+                let secondIndex;
+                let marked = [];
 
+                while ((result = marker.exec(tpl))) {
+                    if (!firstIndex) firstIndex = result.index;
+                    else secondIndex = result.index;
+
+                    if (secondIndex) {
+                        marked.push(result.input.substring(firstIndex+3, secondIndex));
+                        firstIndex = null;
+                        secondIndex = null;
+                    }
+                }
+
+                for (const markedElement of marked)
+                    tpl = tpl.split('<%>'+markedElement+'<%>').join(window.Core.t(markedElement));
+
+                container.innerHTML = tpl;
+                window.dispatchEvent(new CustomEvent("templateChanged", {detail: {slug: slug}}))
+            })
     }
 }

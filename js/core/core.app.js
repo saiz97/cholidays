@@ -1,5 +1,8 @@
 "use strict";
 import Core_SPA_Router from "./core.spa-router.js?v=0.1";
+import Core_Translator from "./core.translator.js?v=0.1";
+import Core_View from "./core.spa-view.js?v=0.1";
+import Core_Utils from "./core.utils";
 
 /**********************************************************************
  *     Class-Bundle for Web-Apps.
@@ -21,9 +24,26 @@ export default class Core_App{
         this.system = {
             webRoot: webRoot, //Root-URL of the App
             templatesPath: templatesPath, //path to folder container our templates
-            debugmode: true //if actived, show debug logs in console
+            debugmode: true, //if actived, show debug logs in console
+            defaultLanguage: 'de'
         };
-
+        this.initPageMarkup();
         this.router = new Core_SPA_Router(routes);
+        this.utils = new Core_Utils();
+        this.translator = languages.length ? new Core_Translator(languages) : new Core_Translator(this.system.defaultLanguage);
+    }
+
+    t(key) {
+        return (this.translator.t(key));
+    }
+
+    initPageMarkup() {
+        this.initHeader();
+        //this.initFooter();
+    }
+
+    initHeader() {
+        let header = document.getElementById("app_header");
+        Core_View.useTemplate(this.system.webRoot + this.system.templatesPath + "/header.tpl", header, "/header");
     }
 }
