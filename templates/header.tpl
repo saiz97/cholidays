@@ -1,6 +1,20 @@
-<a href="#home" class="logo">CompanyLogo</a>
-<div class="navigation">
-    <a class="active" href="#home">Home</a>
+<div class="navigation-bar">
+    <a class="c-brand" href="#">
+        <i class="brand-icon fas fa-virus"></i>
+        <div class="brand-name">
+            <span>CORONA</span>
+            <span>HOLIDAYS</span>
+        </div>
+    </a>
 
+    <ul class="nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Corona1</a></li>
+        <li><a href="#">Corona2</a></li>
+        <li><a href="#">Corona3</a></li>
+    </ul>
+
+    <button id="login"><%>login<%></button>
     <button id="logout"><%>logout<%></button>
 </div>
+

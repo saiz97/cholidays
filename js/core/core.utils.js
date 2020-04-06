@@ -13,17 +13,6 @@ export default class Core_Utils{
         let date = new Date;
         date.setTime(date.getTime() + 24*60*60*1000*days);
         document.cookie = name + "=" + value + ";path=/;expires=" + date.toUTCString();
-
-        /*let expires;
-        if (days) {
-            let date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            expires = "; expires=" + date.toGMTString();
-        } else {
-            expires = "";
-        }
-
-        document.cookie = name + "=" + value + expires + "; path=/";*/
     }
 
     getCookie(name) {

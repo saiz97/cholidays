@@ -1,7 +1,124 @@
-body {
-  box-sizing: border-box;
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css');
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
 }
 header {
-  background-color: bisque;
-  height: 10em;
+  height: 10vh;
+  width: 100vw;
+  background-color: #677E36;
+  margin: 0;
+  padding: 0;
+}
+header .navigation-bar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header .navigation-bar .c-brand {
+  text-decoration: none;
+  color: #909B59;
+  display: flex;
+}
+header .navigation-bar .c-brand .brand-icon {
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  font-size: 3rem;
+}
+header .navigation-bar .c-brand .brand-name {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+}
+header .navigation-bar .nav {
+  list-style-type: none;
+  display: flex;
+  height: 10vh;
+}
+header .navigation-bar .nav li a {
+  height: 100%;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FEFEFC;
+  text-decoration: none;
+}
+header .navigation-bar .nav li a:hover:not(.active) {
+  background-color: #909B59;
+}
+header .navigation-bar .nav .active {
+  background-color: #D7AF1C;
+}
+header .navigation-bar button {
+  cursor: pointer;
+  border: none;
+  background-color: #909B59;
+  color: #FEFEFC;
+  font-size: 1rem;
+  height: 100%;
+  padding: 0 1rem;
+}
+header .navigation-bar button:hover {
+  box-shadow: 0 0 0 0.3rem #D7AF1C inset;
+}
+header .navigation-bar #logout {
+  display: none;
+}
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  background-color: #677E36;
+  color: #FEFEFC;
+  display: flex;
+  justify-content: space-between;
+}
+footer .lang-menu {
+  list-style: none;
+  display: flex;
+}
+footer .lang-menu .lang {
+  cursor: pointer;
+}
+footer .lang-menu .lang:not(:first-child) {
+  margin-left: 0.5rem;
+  border-left: 0.1rem solid #909B59;
+  padding-left: 0.5rem;
+}
+footer div {
+  width: 20vw;
+}
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+/*Login container*/
+.login_container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+.login_container form {
+  margin: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login_container form input {
+  margin: 0.5rem;
+  padding: 0.2rem;
+  width: 30vw;
+  border: 0.1rem solid #909B59;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+}
+.login_container form input[type="submit"] {
+  width: fit-content;
+  padding: 0.5rem 2rem;
 }

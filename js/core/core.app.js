@@ -27,10 +27,12 @@ export default class Core_App{
             debugmode: true, //if actived, show debug logs in console
             defaultLanguage: 'de'
         };
+        this.utils = new Core_Utils();
+        this.translator = languages.length
+            ? new Core_Translator(languages)
+            : new Core_Translator(this.system.defaultLanguage);
         this.initPageMarkup();
         this.router = new Core_SPA_Router(routes);
-        this.utils = new Core_Utils();
-        this.translator = languages.length ? new Core_Translator(languages) : new Core_Translator(this.system.defaultLanguage);
     }
 
     t(key) {
@@ -39,11 +41,18 @@ export default class Core_App{
 
     initPageMarkup() {
         this.initHeader();
-        //this.initFooter();
+        this.initFooter();
     }
 
-    initHeader() {
-        let header = document.getElementById("app_header");
-        Core_View.useTemplate(this.system.webRoot + this.system.templatesPath + "/header.tpl", header, "/header");
+    async initHeader() {
+        await Core_View.useTemplate(this.system.webRoot
+            + this.system.templatesPath
+            + "/header.tpl", document.getElementById("app_header"), "/header");
+    }
+
+    async initFooter() {
+        await Core_View.useTemplate(this.system.webRoot
+            + this.system.templatesPath
+            + "/footer.tpl", document.getElementById("app_footer"), "/footer");
     }
 }

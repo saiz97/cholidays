@@ -19,7 +19,7 @@ export default class Core_View{
 
     init() {
         if (window.Core.system.debugmode) {
-            console.log("View loaded: " + this.slug);
+            //console.log("View loaded: " + this.slug);
         }
     }
 
@@ -34,32 +34,69 @@ export default class Core_View{
     }
 
     renderMarkup(){
-        Core_View.useTemplate(window.Core.system.webRoot + window.Core.system.templatesPath + "/" + this.template + ".tpl", app, this.slug);
+        Core_View.useTemplate(window.Core.system.webRoot
+            + window.Core.system.templatesPath
+            + "/" + this.template + ".tpl", app, this.slug);
     }
 
-    static useTemplate(templatePath, container, slug) {
-        $.get(templatePath, function(tpl){
-                let marker = /<%>/gi;
-                let result;
-                let firstIndex;
-                let secondIndex;
-                let marked = [];
+    static useTemplate(templatePath, container, slug){
+        /*$.get(templatePath, function(tpl){
+            let marker = /<%>/gi;
+            let result;
+            let firstIndex;
+            let secondIndex;
+            let marked = [];
 
-                while ((result = marker.exec(tpl))) {
-                    if (!firstIndex) firstIndex = result.index;
-                    else {
-                        secondIndex = result.index;
-                        marked.push(result.input.substring(firstIndex+3, secondIndex));
-                        firstIndex = null;
-                        secondIndex = null;
-                    }
+            while ((result = marker.exec(tpl))) {
+                if (!firstIndex) firstIndex = result.index;
+                else {
+                    secondIndex = result.index;
+                    marked.push(result.input.substring(firstIndex + 3, secondIndex));
+                    firstIndex = null;
+                    secondIndex = null;
                 }
+            }
 
-                for (const markedElement of marked)
-                    tpl = tpl.split('<%>'+markedElement+'<%>').join(window.Core.t(markedElement));
+            for (const markedElement of marked)
+                tpl = tpl.split('<%>' + markedElement + '<%>').join(window.Core.t(markedElement));
 
-                container.innerHTML = tpl;
-                window.dispatchEvent(new CustomEvent("templateChanged", {detail: {slug: slug}}))
+            container.innerHTML = tpl;
+            window.dispatchEvent(new CustomEvent("templateChanged", {detail: {slug: slug}}));
+        });*/
+
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: templatePath,
+                type: 'GET',
+                timeout: 500,
+                success: (tpl) => {
+                    let marker = /<%>/gi;
+                    let result;
+                    let firstIndex;
+                    let secondIndex;
+                    let marked = [];
+
+                    while ((result = marker.exec(tpl))) {
+                        if (!firstIndex) firstIndex = result.index;
+                        else {
+                            secondIndex = result.index;
+                            marked.push(result.input.substring(firstIndex + 3, secondIndex));
+                            firstIndex = null;
+                            secondIndex = null;
+                        }
+                    }
+
+                    for (const markedElement of marked)
+                        tpl = tpl.split('<%>' + markedElement + '<%>').join(window.Core.t(markedElement));
+
+                    container.innerHTML = tpl;
+                    window.dispatchEvent(new CustomEvent("templateChanged", {detail: {slug: slug}}));
+                    resolve(tpl);
+                },
+                error: (tpl) => {
+                    reject(tpl);
+                }
             })
+        });
     }
 }

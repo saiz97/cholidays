@@ -20,12 +20,12 @@ export default class Core_SPA_Router{
     }
 
     init() {
-        window.removeEventListener('hashchange', this.hasChanged);
-        window.addEventListener('hashchange', this.hasChanged.bind(this));
-        this.hasChanged();
+        window.removeEventListener('hashchange', this.hashChanged);
+        window.addEventListener('hashchange', this.hashChanged.bind(this));
+        this.hashChanged();
     }
 
-    hasChanged() {
+    hashChanged() {
         if (window.location.hash.length > 2) {
             //iterate all existing routes
             for (const route of this.routes) {
