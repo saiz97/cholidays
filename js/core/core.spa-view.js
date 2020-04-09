@@ -40,14 +40,14 @@ export default class Core_View{
     }
 
     static useTemplate(templatePath, container, slug){
-        /*$.get(templatePath, function(tpl){
+        $.get(templatePath, function(tpl){
             let marker = /<%>/gi;
             let result;
             let firstIndex;
             let secondIndex;
             let marked = [];
 
-            while ((result = marker.exec(tpl))) {
+            while ((result = marker.exec(tpl))) { //.exec for finding regex pattern in tpl
                 if (!firstIndex) firstIndex = result.index;
                 else {
                     secondIndex = result.index;
@@ -62,9 +62,10 @@ export default class Core_View{
 
             container.innerHTML = tpl;
             window.dispatchEvent(new CustomEvent("templateChanged", {detail: {slug: slug}}));
-        });*/
+        });
 
-        return new Promise((resolve, reject) => {
+        /*ajax with Promise*/
+        /*return new Promise((resolve, reject) => {
             $.ajax({
                 url: templatePath,
                 type: 'GET',
@@ -97,6 +98,6 @@ export default class Core_View{
                     reject(tpl);
                 }
             })
-        });
+        });*/
     }
 }

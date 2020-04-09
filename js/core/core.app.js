@@ -44,14 +44,14 @@ export default class Core_App{
         this.initFooter();
     }
 
-    async initHeader() {
-        await Core_View.useTemplate(this.system.webRoot
+    initHeader() {
+        Core_View.useTemplate(this.system.webRoot
             + this.system.templatesPath
             + "/header.tpl", document.getElementById("app_header"), "/header");
     }
 
-    async initFooter() {
-        await Core_View.useTemplate(this.system.webRoot
+    initFooter() {
+        Core_View.useTemplate(this.system.webRoot
             + this.system.templatesPath
             + "/footer.tpl", document.getElementById("app_footer"), "/footer");
     }
