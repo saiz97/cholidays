@@ -1,4 +1,5 @@
 "use strict";
+
 /*******************************************************
  *     Hash-based router for Single Page Applications.
  *     Handles Routes behind a '/#/' to your convenience.
@@ -26,6 +27,7 @@ export default class Core_SPA_Router{
     }
 
     hashChanged() {
+        window.Core.initPageMarkup();
         if (window.location.hash.length > 2) {
             //iterate all existing routes
             for (const route of this.routes) {
