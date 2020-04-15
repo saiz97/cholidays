@@ -53,7 +53,7 @@ header .navigation-bar .nav li a:hover:not(.active) {
 header .navigation-bar .nav .active {
   background-color: #D7AF1C;
 }
-header .navigation-bar button {
+header .navigation-bar input {
   cursor: pointer;
   border: none;
   background-color: #909B59;
@@ -62,7 +62,7 @@ header .navigation-bar button {
   height: 100%;
   padding: 0 1rem;
 }
-header .navigation-bar button:hover {
+header .navigation-bar input:hover {
   box-shadow: 0 0 0 0.3rem #D7AF1C inset;
 }
 header .navigation-bar #logout {

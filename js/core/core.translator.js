@@ -16,17 +16,23 @@ export default class Core_Translator {
 
     changeLanguageOnClickHandler() {
         $(document).on("click", ".lang", function () {
-            if ($(this).text().toLowerCase() === 'de') {
+
+            if ($(this).attr('value') === "de") {
                 window.Core.utils.setCookie("lang", "de", 1);
-            } else if ($(this).text().toLowerCase() === 'en') {
+                window.Core.translator.currentLanguage = "de";
+            } else if ($(this).attr('value') === "en") {
                 window.Core.utils.setCookie("lang", "en", 1);
+                window.Core.translator.currentLanguage = "en";
             }
-            location.reload();
+
+            window.dispatchEvent(new HashChangeEvent("hashchange"));
         });
     }
 }
 
 Core_language.en = {
+    en: "englisch",
+    de: "german",
     username: "username",
     password: "password",
     logout: "logout",
@@ -34,6 +40,8 @@ Core_language.en = {
 };
 
 Core_language.de = {
+    en: "Englisch",
+    de: "Deutsch",
     username: "Benutzername",
     password: "Passwort",
     logout: "Ausloggen",

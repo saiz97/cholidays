@@ -14,7 +14,7 @@
         <li><a href="#">Corona3</a></li>
     </ul>
 
-    <button id="login"><%>login<%></button>
-    <button id="logout"><%>logout<%></button>
+    <input id="login" type="button" value="<%>login<%>"/>
+    <input id="logout" type="button" value="<%>logout<%>"/>
 </div>
 

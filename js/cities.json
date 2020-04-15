@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "5aa29129f36d280504b4a1df",
+    "name": "Paris",
+    "country": "France",
+    "image": "https://images.pexels.com/photos/2363/france-landmark-lights-night.jpg?w=1260&h=750&auto=compress&cs=tinysrgb",
+    "nickname": "The City of Lights"
+  },
+  {
+    "_id": "5aa2916bf36d280504b4a212",
+    "name": "Rome",
+    "country": "Italy",
+    "image": "https://images.pexels.com/photos/10922/pexels-photo-10922.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb",
+    "nickname": "The Eternal City"
+  },
+  {
+    "_id": "5aa291d5f36d280504b4a236",
+    "name": "London",
+    "country": "England",
+    "image": "https://images.pexels.com/photos/50632/pexels-photo-50632.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb",
+    "nickname": "The Great Wen"
+  },
+  {
+    "_id": "5aa2921bf36d280504b4a25a",
+    "name": "Istanbul",
+    "country": "Turkey",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Istanbul_%288274724020%29.jpg",
+    "nickname": "Augusta Antonina"
+  },
+  {
+    "_id": "5aa29bfbf36d280504b4a82f",
+    "name": "Buenos Aires",
+    "country": "Argentina",
+    "image": "https://c1.staticflickr.com/7/6099/6349614121_c31aedcb8e_b.jpg",
+    "nickname": "Queen of the Plata"
+  },
+  {
+    "_id": "5aa29c50f36d280504b4a86d",
+    "name": "New York City",
+    "country": "USA",
+    "image": "https://images.pexels.com/photos/378570/pexels-photo-378570.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb",
+    "nickname": "The Big Apple"
+  }
+]
