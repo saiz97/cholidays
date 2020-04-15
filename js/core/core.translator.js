@@ -26,6 +26,7 @@ export default class Core_Translator {
             }
 
             window.dispatchEvent(new HashChangeEvent("hashchange"));
+            window.Core.initPageMarkup();
         });
     }
 }

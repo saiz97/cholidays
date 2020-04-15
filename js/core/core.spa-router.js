@@ -27,7 +27,6 @@ export default class Core_SPA_Router{
     }
 
     hashChanged() {
-        window.Core.initPageMarkup();
         if (window.location.hash.length > 2) {
             //iterate all existing routes
             for (const route of this.routes) {
