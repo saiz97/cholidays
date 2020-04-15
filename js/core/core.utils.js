@@ -23,4 +23,14 @@ export default class Core_Utils{
     deleteCookie(name) {
         Core_Utils.setCookie(name, '', -1);
     }
+
+    isEmpty(variable) {
+        if (Array.isArray(variable)) {
+            return variable.length === 0;
+        } else if (typeof variable === "object") {
+            return (Object.entries(variable).length === 0 && variable.constructor === Object);
+        } else {
+            return (typeof variable === "undefined" || variable == null || variable === "");
+        }
+    }
 }

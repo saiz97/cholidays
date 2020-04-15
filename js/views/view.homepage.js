@@ -8,7 +8,6 @@ export default class HomepageView extends Core_View{
 
     init() {
         super.init();
-        //console.log("hi @homepageview");
 
         $("#login").unbind("click").on("click", function (e) {
             e.preventDefault();
@@ -21,6 +20,18 @@ export default class HomepageView extends Core_View{
             $("#logout").hide();
             window.location.hash = "/login";
         });
-        //HERE COMES VIEW SPECIFIC STUFF
+
+        this.renderCities().then(function () {
+            if (window.Core.system.debugmode) {
+                console.log("Cities successfully rendered");
+            }
+        });
+    }
+
+    async renderCities() {
+        let cities = await window.Core.model.getCities();
+        for (const city of cities) {
+            $("#cities_container").append(city.getListMarkup());
+        }
     }
 }

@@ -3,6 +3,7 @@ import Core_SPA_Router from "./core.spa-router.js?v=0.1";
 import Core_Translator from "./core.translator.js?v=0.1";
 import Core_View from "./core.spa-view.js?v=0.1";
 import Core_Utils from "./core.utils.js?v=0.1";
+import Core_Model from "./core.model.js?v=0.1";
 
 /**********************************************************************
  *     Class-Bundle for Web-Apps.
@@ -31,6 +32,9 @@ export default class Core_App{
         this.translator = languages.length
             ? new Core_Translator(languages)
             : new Core_Translator(this.system.defaultLanguage);
+        this.getParams = {};
+        this.model = new Core_Model();
+
         this.initPageMarkup();
         this.router = new Core_SPA_Router(routes);
     }
@@ -44,14 +48,14 @@ export default class Core_App{
         this.initFooter();
     }
 
-    initHeader() {
-        Core_View.useTemplate(this.system.webRoot
+    async initHeader() {
+        await Core_View.useTemplate(this.system.webRoot
             + this.system.templatesPath
             + "/header.tpl", document.getElementById("app_header"), "/header");
     }
 
-    initFooter() {
-        Core_View.useTemplate(this.system.webRoot
+    async initFooter() {
+        await Core_View.useTemplate(this.system.webRoot
             + this.system.templatesPath
             + "/footer.tpl", document.getElementById("app_footer"), "/footer");
     }

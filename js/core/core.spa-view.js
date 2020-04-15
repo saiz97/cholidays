@@ -30,7 +30,14 @@ export default class Core_View{
     }
 
     isActive() {
-        return (window.location.hash.substr(1).replace('#', '') === this.slug);
+        //ist ein getParameter vorhanden?
+        if (window.Core.utils.isEmpty(Core_View.getGetParameters())) {
+            //kein Fragezeichen vorhanden
+            return (window.location.hash.substr(1).replace('#', '') === this.slug);
+        } else {
+            let index = window.location.hash.substr(1).indexOf("?");
+            return (window.location.hash.substr(1, index).replace('#', '') === this.slug);
+        }
     }
 
     renderMarkup(){
@@ -40,64 +47,49 @@ export default class Core_View{
     }
 
     static useTemplate(templatePath, container, slug){
-        $.get(templatePath, function(tpl){
-            let marker = /<%>/gi;
-            let result;
-            let firstIndex;
-            let secondIndex;
-            let marked = [];
+        //do promise
+        return new Promise(resolve => {
+            $.get(templatePath, function(tpl){
+                let marker = /<%>/gi;
+                let result;
+                let firstIndex;
+                let secondIndex;
+                let marked = [];
 
-            while ((result = marker.exec(tpl))) { //.exec for finding regex pattern in tpl
-                if (!firstIndex) firstIndex = result.index;
-                else {
-                    secondIndex = result.index;
-                    marked.push(result.input.substring(firstIndex + 3, secondIndex));
-                    firstIndex = null;
-                    secondIndex = null;
-                }
-            }
-
-            for (const markedElement of marked)
-                tpl = tpl.split('<%>' + markedElement + '<%>').join(window.Core.t(markedElement));
-
-            container.innerHTML = tpl;
-            window.dispatchEvent(new CustomEvent("templateChanged", {detail: {slug: slug}}));
-        });
-
-        /*ajax with Promise*/
-        /*return new Promise((resolve, reject) => {
-            $.ajax({
-                url: templatePath,
-                type: 'GET',
-                timeout: 500,
-                success: (tpl) => {
-                    let marker = /<%>/gi;
-                    let result;
-                    let firstIndex;
-                    let secondIndex;
-                    let marked = [];
-
-                    while ((result = marker.exec(tpl))) {
-                        if (!firstIndex) firstIndex = result.index;
-                        else {
-                            secondIndex = result.index;
-                            marked.push(result.input.substring(firstIndex + 3, secondIndex));
-                            firstIndex = null;
-                            secondIndex = null;
-                        }
+                while ((result = marker.exec(tpl))) { //.exec for finding regex pattern in tpl
+                    if (!firstIndex) firstIndex = result.index;
+                    else {
+                        secondIndex = result.index;
+                        marked.push(result.input.substring(firstIndex + 3, secondIndex));
+                        firstIndex = null;
+                        secondIndex = null;
                     }
-
-                    for (const markedElement of marked)
-                        tpl = tpl.split('<%>' + markedElement + '<%>').join(window.Core.t(markedElement));
-
-                    container.innerHTML = tpl;
-                    window.dispatchEvent(new CustomEvent("templateChanged", {detail: {slug: slug}}));
-                    resolve(tpl);
-                },
-                error: (tpl) => {
-                    reject(tpl);
                 }
-            })
-        });*/
+
+                for (const markedElement of marked)
+                    tpl = tpl.split('<%>' + markedElement + '<%>').join(window.Core.t(markedElement));
+
+                container.innerHTML = tpl;
+
+                window.Core.getParams = Core_View.getGetParameters();
+                window.dispatchEvent(new CustomEvent("templateChanged", {detail: {slug: slug}}));
+                resolve();
+            });
+        });
+    }
+
+    static getGetParameters() {
+        let index = window.location.hash.substr(1).indexOf("?");
+        if (index !== -1) {
+            let parameters = window.location.hash.substr(index + 2);
+            let result = parameters.split("&").reduce(function (result, item) {
+                let parts = item.split("="); //array [0] = key [1] = value
+                result[parts[0]] = parts[1];
+                return result;
+            }, {});
+            return result;
+        } else {
+            return {};
+        }
     }
 }
