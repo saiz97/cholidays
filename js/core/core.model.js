@@ -1,5 +1,6 @@
 "use strict";
 import City from "../classes/class.city.js?v=0.1"
+import Hotel from "../classes/class.hotel.js?v=0.1";
 const cities_json = "./cities.json";
 const hotels_json = "./hotels.json";
 
@@ -38,23 +39,33 @@ export default class Core_Model {
         return await this.getCityBy("_id", id);
     }
 
-    getHotels() {
+    getHotelsOfCity(cityname) {
         return new Promise(resolve => {
             $.getJSON(hotels_json, function (data) {
                 let hotels = [];
                 for (let hotel of data) {
-                    hotels.push(new City(hotel));
+                    if (hotel.city === cityname) {
+                        hotels.push(new Hotel(hotel));
+                    }
                 }
                 resolve(hotels);
             });
         });
     }
 
-    getHotelOfCity() {
-
+    getHotelBy(key, value) {
+        return new Promise(resolve => {
+            $.getJSON(cities_json, function (data) {
+                for (let city of data) {
+                    if (city[key] === value) {
+                        resolve(new Hotel(city));
+                    }
+                }
+            });
+        });
     }
 
-    getHotel(id) {
-
+    async getHotel(id) {
+        return await this.getHotelBy("_id", id);
     }
 };

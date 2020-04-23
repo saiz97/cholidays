@@ -38,7 +38,9 @@ Core_language.en = {
     password: "password",
     logout: "logout",
     login: "login",
-    city_description: "City Description"
+    city_description: "City Description",
+    country: "Country",
+    nickname: "Nickname"
 };
 
 Core_language.de = {
@@ -48,5 +50,7 @@ Core_language.de = {
     password: "Passwort",
     logout: "Ausloggen",
     login: "Einloggen",
-    city_description: "Beschreibung"
+    city_description: "Länder Beschreibung",
+    country: "Land",
+    nickname: "Auch genannt:"
 };

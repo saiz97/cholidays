@@ -9,6 +9,7 @@
 header {
   height: 10vh;
   width: 100vw;
+  max-width: 100%;
   background-color: #677E36;
   margin: 0;
   padding: 0;
@@ -69,9 +70,10 @@ header .navigation-bar #logout {
   display: none;
 }
 footer {
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  left: 0;
   width: 100vw;
+  max-width: 100%;
   background-color: #677E36;
   color: #FEFEFC;
   display: flex;
@@ -123,25 +125,24 @@ body {
   padding: 0.5rem 2rem;
 }
 #cities_container {
-  width: 90vw;
-  display: flex;
-  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0 5vw;
 }
 #cities_container .city {
   text-decoration: none;
   color: black;
   font-size: 1rem;
-  width: 20%;
   border: 1px solid grey;
   margin: 2px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #FEFEFC;
+  border: none;
+  height: 30vh;
+  padding: 3% 0 0 5%;
 }
-#cities_container .city p {
-  margin-left: 5px;
-}
-#cities_container .city p span {
-  margin-right: 2px;
-  font-weight: 900;
-}
-#cities_container .city img {
-  width: 100%;
+#cities_container .city h1,
+#cities_container .city h4 {
+  margin: 0;
 }

@@ -15,6 +15,7 @@ export default class CityView extends Core_View{
             window.location.hash = "/"; //lead back to homepage
         } else {
             let self = this;
+            console.log(window.Core.getParams["id"]);
             window.Core.model.getCity(window.Core.getParams["id"]).then(function (response) {
                 self.city = response;
                 self.render();
@@ -24,5 +25,6 @@ export default class CityView extends Core_View{
 
     render() {
         $("#cities_detail_container").html(this.city.getSingleMarkup());
+        console.log($(".city-hotels"));
     }
 }
