@@ -31,7 +31,7 @@ export default class City {
                     <p><span><%>country<%></span>${this.country}</p>
                     <p><span><%>nickname<%></span>${this.nickname}</p>
                 </div>
-                <div class="city-hotels"></div>
+                <div id="city-hotels"></div>
             </div>            
         `;
 

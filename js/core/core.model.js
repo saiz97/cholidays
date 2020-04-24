@@ -39,6 +39,8 @@ export default class Core_Model {
         return await this.getCityBy("_id", id);
     }
 
+
+    /*============HOTELS============*/
     getHotelsOfCity(cityname) {
         return new Promise(resolve => {
             $.getJSON(hotels_json, function (data) {
@@ -55,10 +57,10 @@ export default class Core_Model {
 
     getHotelBy(key, value) {
         return new Promise(resolve => {
-            $.getJSON(cities_json, function (data) {
-                for (let city of data) {
-                    if (city[key] === value) {
-                        resolve(new Hotel(city));
+            $.getJSON(hotels_json, function (data) {
+                for (let hotel of data) {
+                    if (hotel[key] === value) {
+                        resolve(new Hotel(hotel));
                     }
                 }
             });

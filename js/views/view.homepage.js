@@ -31,8 +31,7 @@ export default class HomepageView extends Core_View{
     async renderCities() {
         let cities = await window.Core.model.getCities();
         for (const city of cities) {
-            city.hotels.push(await window.Core.model.getHotelsOfCity(city.name));
-            console.log(city);
+            city.hotels = await window.Core.model.getHotelsOfCity(city.name);
         }
 
 
