@@ -7,7 +7,9 @@ body{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  color: @font-color;
   font-family: @font-family;
+  overflow-x: hidden;
 }
 
 /*Login container*/
@@ -47,9 +49,7 @@ body{
 
   .city{
     text-decoration: none;
-    color: black;
     font-size: 1rem;
-    border: 1px solid grey;
     margin: 2px;
 
     background-size: cover;
@@ -68,5 +68,176 @@ body{
 
 #cities_detail_container, #hotel_container{
   padding: 0 5vw;
+}
+
+#hotel_container{
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  #mapid {
+    width: 100%;
+    height: 35vh;
+    margin: 0 0 5vh 0;
+  }
+
+  #hotels_detail_container {
+    .hotel-information{
+      padding: 0 5vh 10vh 5vh;
+      display: flex;
+
+      .hotel-desc{
+        width: 70%;
+        padding-right: 5vw;
+        h1{
+          padding: 0;
+          margin: 0;
+        }
+        h4 {
+          padding: 0;
+          margin: 0;
+        }
+      }
+
+      .hotel-contact {
+        width: 30%;
+        td {
+          padding: 0.2rem;
+          &:first-child{
+            color: @bg-green-light;
+            padding-right: 1rem;
+          }
+        }
+        a {
+          color: @font-color;
+          text-decoration: none;
+        }
+      }
+
+    }
+
+    .amenities-container{
+      padding: 0 5rem 2rem 5rem;
+
+      .hotel-amenities{
+        list-style: none;
+        display: flex;
+        li {
+          i {
+            font-size: 2rem;
+          }
+          .tooltip {
+            position: relative;
+            display: inline-block;
+
+            .tooltiptext {
+              font-family: @font-family;
+              font-size: 1rem;
+              visibility: hidden;
+              width: 120px;
+              background-color: @bg-green-light;
+              color: @bg-white;
+              text-align: center;
+              padding: 0.5rem 0;
+              border-radius: 0.1rem;
+
+              /* Position the tooltip text */
+              position: absolute;
+              z-index: 1;
+              bottom: 125%;
+              left: 50%;
+              margin-left: -60px;
+
+              /* Fade in tooltip */
+              opacity: 0;
+              transition: opacity 0.3s;
+
+              &::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: @bg-green-light transparent transparent transparent;
+              }
+            }
+
+            /* Tooltip arrow */
+            .tooltip .tooltiptext::after {
+
+            }
+
+            &:hover {
+              .tooltiptext {
+                visibility: visible;
+                opacity: 1;
+              }
+            }
+
+          }
+
+          padding: 1rem;
+        }
+      }
+    }
+
+    .slider-container{
+      background-color: @bg-green-primary;
+      padding: 2rem 5rem 2rem 5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      div{
+        max-width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+
+        button {
+          font-size: 3rem;
+          border: none;
+          background: none;
+          color: @bg-green-light;
+
+          -webkit-transition: font-size 0.5s;
+          -moz-transition: font-size 0.5s;
+          -o-transition: font-size 0.5s;
+          transition: font-size 0.5s;
+
+          &:hover {
+            font-size: 3.2rem;
+          }
+        }
+
+        .slide-display-left {
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translate(0,-50%);
+        }
+
+        .slide-display-right {
+          position: absolute;
+          top: 50%;
+          right: 0;
+          transform: translate(0,-50%);
+        }
+
+        .image-slide{
+          width: 100%;
+          display: none;
+          vertical-align: middle;
+          img{
+            width: 100%;
+          }
+        }
+      }
+
+    }
+
+  }
 }
 

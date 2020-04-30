@@ -22,5 +22,29 @@ export default class HotelView extends Core_View{
 
     render() {
         $("#hotels_detail_container").html(this.hotel.getSingleMarkup());
+        this.initSlider();
+    }
+
+    initSlider() {
+        let slideIndex = 1;
+        showDivs(slideIndex);
+
+        $('.slide-display-left').on('click', (e) => {
+            showDivs(slideIndex += -1);
+        });
+
+        $('.slide-display-right').on('click', (e) => {
+            showDivs(slideIndex += 1);
+        });
+
+        function showDivs(n) {
+            let x = $('.image-slide');
+            if (n > x.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = x.length}
+            for (let i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            x[slideIndex-1].style.display = "block";
+        }
     }
 };

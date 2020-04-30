@@ -37,43 +37,50 @@ export default class Hotel {
             
         `;
 
-        markup += this.getSlideshow(this.images);
         markup += this.getAmenities(this.amenities);
+        markup += this.getSlideshow(this.images);
 
-        //this.getGoogleMap(this.latitude, this.longitude);
+        this.getGoogleMap(this.latitude, this.longitude);
         return markup;
-        //TODO: do it beautiful, with .tpl and responsive
     }
 
     getAmenities(amenities) {
-        let result = '<h2><%>Amenities<%></h2><ul class="hotel-amenities">';
+        let result = '<div class="amenities-container"><h2><%>Amenities<%></h2><ul class="hotel-amenities">';
 
-        if (amenities.wifi) result += '<li><i class="fas fa-wifi"></i></li>';
-        if (amenities.pool) result += '<li><i class="fas fa-swimmer"></i></li>';
-        if (amenities.spa) result += '<li><i class="fas fa-spa"></i></li>';
-        if (amenities.parking) result += '<li><i class="fas fa-parking"></i></li>';
-        if (amenities.ac) result += '<li><i class="fas fa-fan"></i></li>';
-        if (amenities.restaurant) result += '<li><i class="fas fa-utensils"></i></li>';
-        if (amenities.bar) result += '<li><i class="fas fa-glass-cheers"></i></li>';
-        if (amenities.gym) result += '<li><i class="fas fa-dumbbell"></i></li>';
+        if (amenities.wifi) result += '<li><i class="fas fa-wifi tooltip"><span class="tooltiptext">Free Wifi</span></i></li>';
+        if (amenities.pool) result += '<li><i class="fas fa-swimmer tooltip"><span class="tooltiptext">Swimming Pool</span></i></li>';
+        if (amenities.spa) result += '<li><i class="fas fa-spa tooltip"><span class="tooltiptext">Spa Area</span></i></li>';
+        if (amenities.parking) result += '<li><i class="fas fa-parking tooltip"><span class="tooltiptext">Free Parking</span></i></li>';
+        if (amenities.ac) result += '<li><i class="fas fa-fan tooltip"><span class="tooltiptext">Air Condition</span></i></li>';
+        if (amenities.restaurant) result += '<li><i class="fas fa-utensils tooltip"><span class="tooltiptext">Restaurant</span></i></li>';
+        if (amenities.bar) result += '<li><i class="fas fa-glass-cheers tooltip"><span class="tooltiptext">Bar Area</span></i></li>';
+        if (amenities.gym) result += '<li><i class="fas fa-dumbbell tooltip"><span class="tooltiptext">Gym Area</span></i></li>';
 
-        result += '</ul>';
+        result += '</ul></div>';
         return result;
     }
 
     getGoogleMap(latitude, longitude) {
+        let mymap = L.map('mapid').setView([latitude, longitude], 300);
 
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19
+        }).addTo(mymap);
+
+        L.marker(L.latLng(latitude, longitude)).addTo(mymap);
     }
 
     getSlideshow(images) {
-        let slideshow = '<div class="slider-content slider-container">';
+        let slideshow = '<div class="slider-container"><div>';
         for (const image of images) {
             slideshow += `
-                <div class="slider-container slide">
-                  <img src="${image}" style="width:100%">                
+                <div class="image-slide">
+                  <img src="${image}">                
                 </div>`
         }
-        slideshow += '</div>';
+        slideshow += `  <button class="slide-display-left">&#10094;</button>
+                        <button class="slide-display-right">&#10095;</button>
+                    </div></div>`;
         return slideshow;
     }
 
