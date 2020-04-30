@@ -100,6 +100,9 @@ body {
   font-family: 'Open Sans', sans-serif;
   overflow-x: hidden;
 }
+body .fa-star {
+  color: #909B59;
+}
 /*Login container*/
 .login_container {
   width: 100vw;
@@ -127,14 +130,17 @@ body {
 #cities_container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  padding: 0 5vw;
+  padding: 3rem;
 }
 #cities_container .city {
   text-decoration: none;
   font-size: 1rem;
   margin: 2px;
+  background: no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-repeat: no-repeat;
   color: #FEFEFC;
   border: none;
   height: 30vh;
@@ -144,9 +150,79 @@ body {
 #cities_container .city h4 {
   margin: 0;
 }
-#cities_detail_container,
-#hotel_container {
-  padding: 0 5vw;
+#city_container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+#city_container #cities_detail_container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+#city_container #cities_detail_container .city-banner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40vh;
+  background: no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #FEFEFC;
+  font-size: 1.5rem;
+  padding-left: 2rem;
+}
+#city_container #cities_detail_container .city-detail {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-bottom: 0.1rem solid #909B59;
+  height: 30vh;
+}
+#city_container #cities_detail_container .city-detail .city-info {
+  padding: 3rem;
+  margin: auto;
+}
+#city_container #cities_detail_container .city-detail #mapid {
+  height: 30vh;
+}
+#city_container #cities_detail_container .headline-hotels {
+  padding-left: 3rem;
+}
+#city_container #cities_detail_container #city-hotels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  padding: 0 3rem 3rem 3rem;
+}
+#city_container #cities_detail_container #city-hotels .hotel-card {
+  text-decoration: none;
+  color: #070708;
+  border: 0.1rem solid #909B59;
+  border-radius: 0.5rem;
+}
+#city_container #cities_detail_container #city-hotels .hotel-card .card-header {
+  height: 10rem;
+  width: 100%;
+  background: no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#city_container #cities_detail_container #city-hotels .hotel-card .card-body {
+  padding: 0 0.5rem 0.5rem 0.5rem;
+}
+#city_container #cities_detail_container #city-hotels .hotel-card .card-body h1 {
+  font-size: 1.3rem;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+#city_container #cities_detail_container #city-hotels .hotel-card .card-body h4 {
+  font-size: 0.8rem;
+  padding: 0;
+  margin: 0;
 }
 #hotel_container {
   width: 100%;
@@ -159,7 +235,7 @@ body {
   margin: 0 0 5vh 0;
 }
 #hotel_container #hotels_detail_container .hotel-information {
-  padding: 0 5vh 10vh 5vh;
+  padding: 0 5vh 0 5vh;
   display: flex;
 }
 #hotel_container #hotels_detail_container .hotel-information .hotel-desc {
@@ -196,26 +272,29 @@ body {
   display: flex;
 }
 #hotel_container #hotels_detail_container .amenities-container .hotel-amenities li {
+  background-color: #909B59;
+  border: 0.1rem solid #FEFEFC;
   padding: 1rem;
 }
 #hotel_container #hotels_detail_container .amenities-container .hotel-amenities li i {
-  font-size: 2rem;
+  color: #FEFEFC;
+  font-size: 1.5rem;
 }
 #hotel_container #hotels_detail_container .amenities-container .hotel-amenities li .tooltip {
   position: relative;
   display: inline-block;
-  /* Tooltip arrow */
 }
 #hotel_container #hotels_detail_container .amenities-container .hotel-amenities li .tooltip .tooltiptext {
   font-family: 'Open Sans', sans-serif;
+  color: #070708;
+  text-align: center;
   font-size: 1rem;
   visibility: hidden;
   width: 120px;
-  background-color: #909B59;
-  color: #FEFEFC;
-  text-align: center;
+  background-color: #FEFEFC;
+  border: 0.1rem solid #070708;
+  border-radius: 0.5rem;
   padding: 0.5rem 0;
-  border-radius: 0.1rem;
   /* Position the tooltip text */
   position: absolute;
   z-index: 1;
@@ -234,14 +313,13 @@ body {
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #909B59 transparent transparent transparent;
+  border-color: #070708 transparent transparent transparent;
 }
 #hotel_container #hotels_detail_container .amenities-container .hotel-amenities li .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
 #hotel_container #hotels_detail_container .slider-container {
-  background-color: #677E36;
   padding: 2rem 5rem 2rem 5rem;
   display: flex;
   justify-content: center;
@@ -266,6 +344,9 @@ body {
 #hotel_container #hotels_detail_container .slider-container div button:hover {
   font-size: 3.2rem;
 }
+#hotel_container #hotels_detail_container .slider-container div button:focus {
+  outline: none;
+}
 #hotel_container #hotels_detail_container .slider-container div .slide-display-left {
   position: absolute;
   top: 50%;
@@ -285,4 +366,35 @@ body {
 }
 #hotel_container #hotels_detail_container .slider-container div .image-slide img {
   width: 100%;
+}
+@media screen and (max-width: 992px) {
+  .navigation-bar .nav {
+    display: none !important;
+  }
+  #cities_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  #cities_detail_container #city-hotels {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+@media screen and (max-width: 768px) {
+  #cities_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #cities_detail_container .city-detail {
+    height: fit-content !important;
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+  #cities_detail_container #city-hotels {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media screen and (max-width: 576px) {
+  #cities_container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  #cities_detail_container #city-hotels {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
 }

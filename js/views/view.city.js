@@ -21,7 +21,8 @@ export default class CityView extends Core_View{
         }
     }
 
-    render() {
+    async render() {
+        await this.city.loadCityMap();
         $("#cities_detail_container").html(this.city.getSingleMarkup());
         $("#city-hotels").empty();
 

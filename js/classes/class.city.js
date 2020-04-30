@@ -17,25 +17,42 @@ export default class City {
                 <p>${this.nickname}</p>
             </a>
         `;
-
-        //TODO: do it beautiful, with .tpl and responsive
     }
 
     //returns Markup for Singleitem-View
     getSingleMarkup() {
         return `
-            <div class="city-detail">     
-                <h1>${this.name}</h1>  
+            <div class="city-banner" style="background-image: url('${this.image}')">
+                <h1>${this.name}</h1> 
+            </div>
+            <div class="city-detail">
                 <div class="city-info">
-                    <img src="${this.image}">         
                     <p><span><%>country<%></span>${this.country}</p>
-                    <p><span><%>nickname<%></span>${this.nickname}</p>
+                    <p><span><%>nickname<%></span>${this.nickname}</p> 
                 </div>
-                <div id="city-hotels"></div>
-            </div>            
-        `;
-
-
-        //TODO: do it beautiful, with .tpl and responsive
+                    
+                <div id="mapid"></div>               
+            </div>
+            <h1 class="headline-hotels">Visit our Hotels</h1>
+            <div id="city-hotels"></div>`;
     }
+
+    loadCityMap() {
+        $.get({
+            url: `https://geocode.xyz/${this.name.replace(/\s+/g, '%20')}?geoit=csv`,
+            async: true
+        }, (data) => {
+            let lat = data.split(",")[2];
+            let lng = data.split(",")[3];
+
+            let mymap = L.map('mapid').setView([lat, lng], 5);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19
+            }).addTo(mymap);
+
+            L.marker(L.latLng(lat, lng)).addTo(mymap);
+        });
+    }
+
 }

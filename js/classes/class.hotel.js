@@ -11,16 +11,16 @@ export default class Hotel {
 
         let markup = `
             <a class="hotel-card" href="#/hotel?id=${this["_id"]}">
-                <img src="${this.images[0]}">
-                <h1>${this.name}</h1>
-                <h6>${this.price}</h6>
-                <h6>${this.getStarRating(this.stars)}</h6>
+                <div class="card-header" style="background-image: url('${this.images[0]}')">  
+                </div>
+                <div class="card-body">
+                    <h1>${this.name}</h1>
+                    <h4>${this.getStarRating(this.stars)} | ${this.price}€ per Night</h4>
+                </div>
             </a> 
         `;
 
         return markup;
-
-        //TODO: do it beautiful, with .tpl and responsive
     }
 
     //returns Markup for Singleitem-View

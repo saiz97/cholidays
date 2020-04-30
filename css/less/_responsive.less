@@ -1,0 +1,46 @@
+@media screen and (max-width:992px) {
+  .navigation-bar{
+    .nav {
+      display: none !important;
+    }
+  }
+
+  #cities_container{
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #cities_detail_container {
+    #city-hotels{
+      grid-template-columns: repeat(3, 1fr) !important;
+    }
+  }
+}
+
+@media screen and (max-width:768px) {
+  #cities_container{
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #cities_detail_container {
+    .city-detail{
+      height: fit-content !important;
+      grid-template-columns: repeat(1, 1fr) !important;
+    }
+
+    #city-hotels{
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+  }
+}
+
+@media screen and (max-width:576px) {
+  #cities_container{
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  #cities_detail_container {
+    #city-hotels{
+      grid-template-columns: repeat(1, 1fr) !important;
+    }
+  }
+}
