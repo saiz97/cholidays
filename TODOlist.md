@@ -8,4 +8,6 @@ TODO #2: Breadcrumbs
 TODO #3: collapsible Hamburger Menu
 
 _____
-TODO Bugfix: Login/Logout button not working, when language switch
+✔ fixed Bug: reload on language change
+
+✔ fixed Bug: Login/Logout button not working, when language switch

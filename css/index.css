@@ -70,12 +70,14 @@ header .navigation-bar #logout {
   display: none;
 }
 footer {
+  height: 4rem;
   width: 100vw;
   max-width: 100%;
   background-color: #677E36;
   color: #FEFEFC;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 footer .lang-menu {
   list-style: none;
@@ -99,6 +101,10 @@ body {
   color: #070708;
   font-family: 'Open Sans', sans-serif;
   overflow-x: hidden;
+  min-height: 100vh;
+}
+body #core_app {
+  min-height: calc(100vh - 9.8rem);
 }
 body .fa-star {
   color: #909B59;

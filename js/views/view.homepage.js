@@ -10,12 +10,10 @@ export default class HomepageView extends Core_View{
         super.init();
 
         $("#login").unbind("click").on("click", function (e) {
-            e.preventDefault();
             window.location.hash = "/login";
         });
 
         $("#logout").unbind("click").on("click", function (e) {
-            e.preventDefault();
             $("#login").show();
             $("#logout").hide();
             window.location.hash = "/login";

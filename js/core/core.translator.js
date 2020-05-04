@@ -25,8 +25,8 @@ export default class Core_Translator {
                 window.Core.translator.currentLanguage = "en";
             }
 
-            window.dispatchEvent(new HashChangeEvent("hashchange"));
             window.Core.initPageMarkup();
+            window.dispatchEvent(new HashChangeEvent("hashchange"));
         });
     }
 }

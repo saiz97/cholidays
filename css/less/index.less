@@ -11,6 +11,11 @@ body{
   color: @font-color;
   font-family: @font-family;
   overflow-x: hidden;
+  min-height: 100vh;
+
+  #core_app {
+    min-height: calc(100vh - 9.8rem);
+  }
 
   .fa-star{
     color: @bg-green-light;
