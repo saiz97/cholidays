@@ -38,9 +38,10 @@ Core_language.en = {
     password: "password",
     logout: "logout",
     login: "login",
-    city_description: "City Description",
-    country: "Country",
-    nickname: "Nickname"
+    visithotelsheader: "Visit our Hotels!",
+    country: "Country: ",
+    nickname: "Nickname: ",
+    amenities: "Amenities"
 };
 
 Core_language.de = {
@@ -50,7 +51,8 @@ Core_language.de = {
     password: "Passwort",
     logout: "Ausloggen",
     login: "Einloggen",
-    city_description: "Länder Beschreibung",
-    country: "Land",
-    nickname: "Auch genannt:"
+    visithotelsheader: "Besuchen Sie unsere Hotels!",
+    country: "Land: ",
+    nickname: "Wird auch bezeichnet als: ",
+    amenities: "Zusatzleistungen"
 };

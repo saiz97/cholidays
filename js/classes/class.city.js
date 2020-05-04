@@ -27,13 +27,13 @@ export default class City {
             </div>
             <div class="city-detail">
                 <div class="city-info">
-                    <p><span><%>country<%></span>${this.country}</p>
-                    <p><span><%>nickname<%></span>${this.nickname}</p> 
+                    <p><span>${window.Core.t("country")}</span>${this.country}</p>
+                    <p><span>${window.Core.t("nickname")}</span>${this.nickname}</p> 
                 </div>
                     
                 <div id="mapid"></div>               
             </div>
-            <h1 class="headline-hotels">Visit our Hotels</h1>
+            <h1 class="headline-hotels">${window.Core.t("visithotelsheader")}</h1>
             <div id="city-hotels"></div>`;
     }
 

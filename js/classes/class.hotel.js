@@ -45,7 +45,7 @@ export default class Hotel {
     }
 
     getAmenities(amenities) {
-        let result = '<div class="amenities-container"><h2><%>Amenities<%></h2><ul class="hotel-amenities">';
+        let result = `<div class="amenities-container"><h2>${window.Core.t("amenities")}</h2><ul class="hotel-amenities">`;
 
         if (amenities.wifi) result += '<li><i class="fas fa-wifi tooltip"><span class="tooltiptext">Free Wifi</span></i></li>';
         if (amenities.pool) result += '<li><i class="fas fa-swimmer tooltip"><span class="tooltiptext">Swimming Pool</span></i></li>';
