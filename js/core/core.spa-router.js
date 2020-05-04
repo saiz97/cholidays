@@ -40,7 +40,7 @@ export default class Core_SPA_Router{
                 window.location.hash = this.route404.slug;
             } else {
                 if (window.Core.system.debugmode)
-                    console.log("Didn't find page" + window.location.hash + ", but hey there is a homepage!")
+                    console.log("Didn't find page" + window.location.hash + ", but hey there is a homepage!");
                 window.location.hash = this.homeRoute.slug;
             }
         } else {
