@@ -28,6 +28,7 @@ export default class Core_App{
             debugmode: true, //if actived, show debug logs in console
             defaultLanguage: 'de'
         };
+        this.breadcrumbs = [];
         this.utils = new Core_Utils();
         this.translator = languages.length
             ? new Core_Translator(languages)

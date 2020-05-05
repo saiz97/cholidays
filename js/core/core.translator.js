@@ -41,7 +41,10 @@ Core_language.en = {
     visithotelsheader: "Visit our Hotels!",
     country: "Country: ",
     nickname: "Nickname: ",
-    amenities: "Amenities"
+    amenities: "Amenities",
+    bc_home: "Homepage",
+    bc_city: "Citydescription",
+    bc_hotel: "Hoteldescription"
 };
 
 Core_language.de = {
@@ -54,5 +57,8 @@ Core_language.de = {
     visithotelsheader: "Besuchen Sie unsere Hotels!",
     country: "Land: ",
     nickname: "Wird auch bezeichnet als: ",
-    amenities: "Zusatzleistungen"
+    amenities: "Zusatzleistungen",
+    bc_home: "Startseite",
+    bc_city: "Länderbeschreibung",
+    bc_hotel: "Hotelbeschreibung"
 };

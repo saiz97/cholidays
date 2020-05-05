@@ -16,3 +16,6 @@ _____
 ✔ fixed Bug: reload on language change
 
 ✔ fixed Bug: Login/Logout button not working, when language switch
+
+Bug: when clicking Logo or other reference article (a-tag with href="#"), then city output is doubled... why?
+fixed it by binding them and preventing Default behavior + setting up slug

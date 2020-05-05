@@ -1,4 +1,6 @@
 "use strict";
+import View from "../classes/class.view.js?v=0.1";
+
 /*******************************************************
  *     Hash-based Routes for Single Page Applications.
  *     Routes can are treated like Views. Each Route is
@@ -12,6 +14,7 @@ export default class Core_View{
     constructor(slug, template){
         this.slug = slug; //= last part of the url after #
         this.template = template;
+        this.breadcrumbs = new View();
 
         //everytime a page/window gets changed (url) this EventListener gets called
         window.addEventListener("templateChanged", this.listen.bind(this));

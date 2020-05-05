@@ -4,6 +4,9 @@ import Core_View from "../core/core.spa-view.js?v=0.1";
 export default class CityView extends Core_View{
     constructor(slug, template) {
         super(slug, template);
+
+        //window.Core.breadcrumbs.push({name:"bc_city", path:slug});
+        this.breadcrumb = {name:"bc_city", path:slug};
     }
 
     init() {
@@ -16,8 +19,11 @@ export default class CityView extends Core_View{
             window.Core.model.getCity(window.Core.getParams["id"]).then(async function (response) {
                 self.city = response;
                 self.city.hotels = await window.Core.model.getHotelsOfCity(self.city.name);
-                self.render();
+                await self.render();
+                self.breadcrumb.path = `${self.breadcrumb.path}?id=${window.Core.getParams["id"]}`;
+                window.Core.breadcrumbs.push(self.breadcrumb);
             });
+            console.log("Citydetail successfully rendered");
         }
     }
 
