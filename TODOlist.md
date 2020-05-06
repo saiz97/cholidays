@@ -10,6 +10,11 @@ TODO #1: using disallowed languages @core.translator.js
 TODO #4: Favorite Cities + Hotels with indexedDb
 
 TODO #5: beautify stuff :-)
+
+TODO #6: do Favorites for Cities -> view.homepage.js
+        add object to database
+        check for reload if existing
+        delete in database if checkedoff
 _____
 ✔ fixed Bug: reload on language change
 

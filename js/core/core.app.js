@@ -52,7 +52,16 @@ export default class Core_App{
     async initHeader() {
         await Core_View.useTemplate(this.system.webRoot
             + this.system.templatesPath
-            + "/header.tpl", document.getElementById("app_header"), "/header");
+            + "/header.tpl", document.getElementById("app_header"), "/header")
+            .then(() => {
+                let curruser = window.localStorage.getItem('username');
+                if (curruser) {
+                    $("#loggedInAs").show();
+                    $("#login").hide();
+                    $("#logout").show();
+                    $("#currUser").text(curruser);
+                }
+        });
     }
 
     async initFooter() {

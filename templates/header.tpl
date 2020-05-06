@@ -8,12 +8,11 @@
     </a>
 
     <ul class="nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Corona1</a></li>
-        <li><a href="#">Corona2</a></li>
-        <li><a href="#">Corona3</a></li>
+        <li class="active"><a href="#"><%>home<%></a></li>
+        <li><a href="#"><%>favorites<%></a></li>
     </ul>
 
+    <h5 id="loggedInAs"><%>user<%><span id="currUser"></span></h5>
     <input id="login" type="button" value="<%>login<%>"/>
     <input id="logout" type="button" value="<%>logout<%>"/>
 </div>

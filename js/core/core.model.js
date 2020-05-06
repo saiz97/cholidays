@@ -83,6 +83,24 @@ export default class Core_Model {
         return await this.getHotelBy("_id", id);
     }
 
+    static upgradeDB(e){
+        let db = e.target.result;
+        let user = db.createObjectStore("user", {keyPath: "_id"});
+        user.createIndex("username", "username", {unique: true});
+
+        let cities = db.createObjectStore("fav_cities", {keyPath: "_id"});
+        cities.createIndex("name", "name", {unique: false});
+        cities.createIndex("country", "country", {unique: false});
+        cities.createIndex("userId", "userId", {unique: false});
+
+        let hotels = db.createObjectStore("fav_hotels", {keyPath: "_id"});
+        hotels.createIndex("name", "name", {unique: false});
+        hotels.createIndex("city", "city", {unique: false});
+        hotels.createIndex("country", "country", {unique: false});
+        hotels.createIndex("userId", "userId", {unique: false});
+    }
+
+    //window.Core.model.idbRead("favoriten", function(result){console.log(result);});
     idbRead(objectStoreName, callback){
         let request = this.idb.open(dbName, dbVersion);
         request.onsuccess = function(e){
@@ -103,10 +121,27 @@ export default class Core_Model {
         }
     }
 
-    static upgradeDB(e){
-        let db = e.target.result;
-        db.createObjectStore("favorite_cities", {keyPath: "_id"});
-        let hotels = db.createObjectStore("favorite_hotels", {keyPath: "_id"});
-        hotels.createIndex("city", "city", {unique: false});
-    }
+    idbAddUser(objectStoreName, object, callback) {
+        let request = this.idb.open(dbName, dbVersion);
+
+        request.onsuccess = function(e){
+            let db = e.target.result;
+
+            let transaction = db.transaction([objectStoreName], "readwrite").objectStore(objectStoreName).add(object);
+
+            transaction.oncomplete = function(event) {
+                console.log("idbAddUser completed!" + event);
+            };
+
+            transaction.onerror = function(event) {
+                console.log("idbAddUser Error!" + event);
+            };
+        };
+        request.onerror = function(e){
+            console.error(e);
+        };
+        request.onupgradeneeded = function(e){
+            Core_Model.upgradeDB(e);
+        };
+    };
 };

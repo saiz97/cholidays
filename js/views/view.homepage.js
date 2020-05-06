@@ -23,6 +23,11 @@ export default class HomepageView extends Core_View{
             e.preventDefault();
             $("#login").show();
             $("#logout").hide();
+
+            window.localStorage.removeItem('username');
+            $("#loggedInAs").hide();
+            $("#currUser").text("");
+
             window.location.hash = "/login";
         });
 
@@ -49,5 +54,11 @@ export default class HomepageView extends Core_View{
         for (const city of cities) {
             $("#cities_container").append(await city.getListMarkup());
         }
+
+        $(".favorite-city").unbind("click").on("click", function (e) {
+            e.preventDefault();
+
+            $(this).toggleClass("isFavors");
+        });
     }
 }

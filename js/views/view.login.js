@@ -8,14 +8,42 @@ export default class LoginView extends Core_View{
 
     init() {
         super.init();
-        //console.log("Hi @ loginview");
-
+        let self = this;
         $("#login-submit").unbind("click").on("click", function (e) {
             e.preventDefault();
-            $("#login").hide();
-            $("#logout").show();
-            window.location.hash = "/";
+            self.doLoginChecks();
         });
-        //HERE COMES VIEW SPECIFIC STUFF
+    }
+
+    doLoginChecks() {
+        let username = $('#login-username').val();
+        if ($('#login-password').val() !== ""
+            || username !== "") {
+
+            window.Core.model.idbRead("user", function (result) {
+                let existing = false;
+                result.forEach(u => {
+                    if (u.name === username) existing = true;
+                });
+
+                if (!existing) {
+                    window.Core.model.idbAddUser("user", {
+                        _id: result.length + 1,
+                        name: username
+                    }, function (response) {
+                        console.log(response);
+                    });
+                }
+
+                window.localStorage.setItem('username', username);
+                $("#currUser").text(username);
+                $("#loggedInAs").show();
+                $("#login").hide();
+                $("#logout").show();
+                window.location.hash = "/";
+            });
+        } else {
+            alert("Nope :) Another try!");
+        }
     }
 }

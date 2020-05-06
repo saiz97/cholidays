@@ -109,6 +109,10 @@ body #core_app {
 body .fa-star {
   color: #909B59;
 }
+#loggedInAs {
+  color: #FEFEFC;
+  display: none;
+}
 #breadcrumbs {
   padding: 1rem;
   width: 100%;
@@ -396,6 +400,9 @@ button.favorite-city {
 button.favorite-city .fas,
 button.favorite-city .fa {
   font-size: 1.5rem;
+}
+button.isFavors {
+  color: #909B59;
 }
 @media screen and (max-width: 992px) {
   .navigation-bar .nav {
