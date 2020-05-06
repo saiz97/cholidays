@@ -1,5 +1,4 @@
 "use strict";
-import View from "../classes/class.view.js?v=0.1";
 
 /*******************************************************
  *     Hash-based Routes for Single Page Applications.
@@ -14,22 +13,37 @@ export default class Core_View{
     constructor(slug, template){
         this.slug = slug; //= last part of the url after #
         this.template = template;
-        this.breadcrumbs = new View();
 
         //everytime a page/window gets changed (url) this EventListener gets called
         window.addEventListener("templateChanged", this.listen.bind(this));
     }
 
     init() {
+
         if (window.Core.system.debugmode) {
-            //console.log("View loaded: " + this.slug);
+            console.log("View loaded: " + this.slug);
         }
     }
 
     listen(e) {
         if (e.detail.slug === this.slug) {
-            this.init();
+            this.renderBreadcrumbs().then(() => {
+
+                this.init();
+            });
         }
+    }
+
+    async renderBreadcrumbs() {
+        //console.log(window.Core.breadcrumbs);
+        await Core_View.useTemplate(window.Core.system.webRoot
+            + window.Core.system.templatesPath
+            + "/breadcrumbs.tpl", document.getElementById("breadcrumbs_container"), "/breadcrumb");
+
+        window.Core.breadcrumbs.forEach(bc => {
+            console.log("hi", bc);
+            $("#breadcrumbs").append(`<li><a href="#${bc.path}">${window.Core.t(bc.name)}</a></li>`);
+        });
     }
 
     isActive() {

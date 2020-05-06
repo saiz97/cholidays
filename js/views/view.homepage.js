@@ -42,7 +42,6 @@ export default class HomepageView extends Core_View{
         for (const city of cities) {
             city.hotels = await window.Core.model.getHotelsOfCity(city.name);
         }
-        console.log(cities);
         $("#cities_container").empty();
         for (const city of cities) {
             $("#cities_container").append(await city.getListMarkup());
