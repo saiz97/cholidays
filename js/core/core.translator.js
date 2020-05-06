@@ -16,8 +16,7 @@ export default class Core_Translator {
 
     changeLanguageOnClickHandler() {
         $(document).on("click", ".lang", function () {
-
-
+            console.log(window.Core.utils.getCookie("lang"));
             window.Core.utils.setCookie("lang", $(this).attr('value'), 1);
             window.Core.translator.currentLanguage = $(this).attr('value');
 

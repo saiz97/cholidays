@@ -109,6 +109,21 @@ body #core_app {
 body .fa-star {
   color: #909B59;
 }
+#breadcrumbs {
+  padding: 1rem;
+  width: 100%;
+}
+#breadcrumbs span {
+  font-weight: bold;
+}
+#breadcrumbs a {
+  text-decoration: none;
+  cursor: initial;
+}
+#breadcrumbs a[href] {
+  color: #909B59;
+  cursor: pointer;
+}
 /*Login container*/
 .login_container {
   width: 100vw;
@@ -205,6 +220,7 @@ body .fa-star {
 #city_container #cities_detail_container #city-hotels .hotel-card {
   text-decoration: none;
   color: #070708;
+  overflow: hidden;
   border: 0.1rem solid #909B59;
   border-radius: 0.5rem;
 }
@@ -238,7 +254,6 @@ body .fa-star {
 #hotel_container #mapid {
   width: 100%;
   height: 35vh;
-  margin: 0 0 5vh 0;
 }
 #hotel_container #hotels_detail_container .hotel-information {
   padding: 0 5vh 0 5vh;
@@ -372,6 +387,15 @@ body .fa-star {
 }
 #hotel_container #hotels_detail_container .slider-container div .image-slide img {
   width: 100%;
+}
+button.favorite-city {
+  background: none;
+  border: none;
+  color: #FEFEFC;
+}
+button.favorite-city .fas,
+button.favorite-city .fa {
+  font-size: 1.5rem;
 }
 @media screen and (max-width: 992px) {
   .navigation-bar .nav {

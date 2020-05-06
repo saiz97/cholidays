@@ -4,9 +4,6 @@ import Core_View from "../core/core.spa-view.js?v=0.1";
 export default class HotelView extends Core_View{
     constructor(slug, template) {
         super(slug, template);
-
-        //window.Core.breadcrumbs.push({name:"bc_hotel", path:slug});
-        this.breadcrumb = {name:"bc_hotel", path:slug};
     }
 
     init() {
@@ -19,13 +16,8 @@ export default class HotelView extends Core_View{
             window.Core.model.getHotel(window.Core.getParams["id"]).then(function (response) {
                 self.hotel = response;
                 self.render();
-                self.setBreadcrumb(self.breadcrumb, `${self.breadcrumb.path}?id=${window.Core.getParams["id"]}`);
             });
         }
-    }
-
-    setBreadcrumb(breadcrumb, path) {
-        super.setBreadcrumb(breadcrumb, path);
     }
 
     render() {

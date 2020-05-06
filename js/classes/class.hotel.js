@@ -7,8 +7,6 @@ export default class Hotel {
 
     //returns Markup for Listview of Hotel
     getListMarkup() {
-
-
         let markup = `
             <a class="hotel-card" href="#/hotel?id=${this["_id"]}">
                 <div class="card-header" style="background-image: url('${this.images[0]}')">  
@@ -26,6 +24,11 @@ export default class Hotel {
     //returns Markup for Singleitem-View
     getSingleMarkup() {
         let markup = `
+            <div id="breadcrumbs">
+                <a href="#">Home</a><span> > </span>
+                <a href="" class="bc-cityofhotel">${this.city}</a><span> > </span>
+                <a>${this.name}</a>
+            </div>
             <div class="hotel-information">
                 <div class="hotel-desc">
                     <h1>${this.name}</h1>

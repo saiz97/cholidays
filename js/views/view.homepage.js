@@ -4,8 +4,6 @@ import Core_View from "../core/core.spa-view.js?v=0.1";
 export default class HomepageView extends Core_View{
     constructor(slug, template) {
         super(slug, template);
-
-        this.breadcrumb = {name:"bc_home", path:slug};
     }
 
     init() {
@@ -28,17 +26,18 @@ export default class HomepageView extends Core_View{
             window.location.hash = "/login";
         });
 
+        $(document).on("click", ".bc-cityofhotel", (e) => {
+            e.preventDefault();
+            window.Core.model.getCityBy("name", $(e.currentTarget).text()).then(function (res) {
+                window.location.hash = "#/city?id=" + res['_id'];
+            });
+        });
+
         this.renderCities().then(function () {
             if (window.Core.system.debugmode) {
                 console.log("Cities successfully rendered");
             }
         });
-
-        this.setBreadcrumb(this.breadcrumb, this.breadcrumb.path)
-    }
-
-    setBreadcrumb(breadcrumb, path) {
-        super.setBreadcrumb(breadcrumb, path);
     }
 
     async renderCities() {

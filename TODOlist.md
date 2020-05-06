@@ -3,15 +3,13 @@
 
 TODO #1: using disallowed languages @core.translator.js
 
-TODO #2: Breadcrumbs  
-Eine relativ einfache Möglichkeit wäre, in jeder View die 
-Breadcrumbs zu definieren (bspw. schon im Konstruktor?) 
-Die class.view.js hat dann eine Logik, diese sauber auszugeben.
+✔ TODO #2: Breadcrumbs  
 
 ✔ TODO #3: Translate dynamic content (hoteldetail, citydetail)
 
-TODO #4: collapsible Hamburger Menu
+TODO #4: Favorite Cities + Hotels with indexedDb
 
+TODO #5: beautify stuff :-)
 _____
 ✔ fixed Bug: reload on language change
 
