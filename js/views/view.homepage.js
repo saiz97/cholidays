@@ -34,7 +34,11 @@ export default class HomepageView extends Core_View{
             }
         });
 
-        window.Core.breadcrumbs.push(this.breadcrumb);
+        this.setBreadcrumb(this.breadcrumb, this.breadcrumb.path)
+    }
+
+    setBreadcrumb(breadcrumb, path) {
+        super.setBreadcrumb(breadcrumb, path);
     }
 
     async renderCities() {

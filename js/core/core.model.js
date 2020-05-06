@@ -4,10 +4,22 @@ import Hotel from "../classes/class.hotel.js?v=0.1";
 const cities_json = "./cities.json";
 const hotels_json = "./hotels.json";
 
+const dbName = "c-holidays";
+const dbVersion = 1;
+
 export default class Core_Model {
     constructor() {
-        //offline verfügbare cities
-        //this.cities = new Map();
+        this.idb = window.indexedDB
+            || window.mozIndexedDB
+            || window.webkitIndexedDB
+            || window.msIndexedDB;
+
+        this.user = {
+            favorites: {
+                cities: [],
+                hotels: []
+            }
+        }
     }
 
     getCities() {
@@ -69,5 +81,32 @@ export default class Core_Model {
 
     async getHotel(id) {
         return await this.getHotelBy("_id", id);
+    }
+
+    idbRead(objectStoreName, callback){
+        let request = this.idb.open(dbName, dbVersion);
+        request.onsuccess = function(e){
+            let db = e.target.result;
+            let request = db.transaction([objectStoreName], 'readonly').objectStore(objectStoreName).getAll();
+            request.onsuccess = function(){
+                callback(request.result);
+            };
+            request.onerror = function(e){
+                console.error(e);
+            }
+        };
+        request.onerror = function(e){
+            console.error(e);
+        };
+        request.onupgradeneeded = function(e){
+            Core_Model.upgradeDB(e);
+        }
+    }
+
+    static upgradeDB(e){
+        let db = e.target.result;
+        db.createObjectStore("favorite_cities", {keyPath: "_id"});
+        let hotels = db.createObjectStore("favorite_hotels", {keyPath: "_id"});
+        hotels.createIndex("city", "city", {unique: false});
     }
 };

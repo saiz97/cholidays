@@ -20,11 +20,14 @@ export default class CityView extends Core_View{
                 self.city = response;
                 self.city.hotels = await window.Core.model.getHotelsOfCity(self.city.name);
                 await self.render();
-                self.breadcrumb.path = `${self.breadcrumb.path}?id=${window.Core.getParams["id"]}`;
-                window.Core.breadcrumbs.push(self.breadcrumb);
+                self.setBreadcrumb(self.breadcrumb, `${self.breadcrumb.path}?id=${window.Core.getParams["id"]}`);
             });
             console.log("Citydetail successfully rendered");
         }
+    }
+
+    setBreadcrumb(breadcrumb, path) {
+        super.setBreadcrumb(breadcrumb, path);
     }
 
     async render() {

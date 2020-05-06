@@ -16,14 +16,16 @@ export default class HotelView extends Core_View{
             window.location.hash = "/"; //lead back to homepage
         } else {
             let self = this;
-            window.Core.model.getHotel(window.Core.getParams["id"]).then(async function (response) {
+            window.Core.model.getHotel(window.Core.getParams["id"]).then(function (response) {
                 self.hotel = response;
                 self.render();
-                self.breadcrumb.path = `${self.breadcrumb.path}?id=${window.Core.getParams["id"]}`;
-                window.Core.breadcrumbs.push(self.breadcrumb);
+                self.setBreadcrumb(self.breadcrumb, `${self.breadcrumb.path}?id=${window.Core.getParams["id"]}`);
             });
         }
+    }
 
+    setBreadcrumb(breadcrumb, path) {
+        super.setBreadcrumb(breadcrumb, path);
     }
 
     render() {

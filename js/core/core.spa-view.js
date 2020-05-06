@@ -41,10 +41,25 @@ export default class Core_View{
             + "/breadcrumbs.tpl", document.getElementById("breadcrumbs_container"), "/breadcrumb");
 
         window.Core.breadcrumbs.forEach(bc => {
-            console.log("hi", bc);
             $("#breadcrumbs").append(`<li><a href="#${bc.path}">${window.Core.t(bc.name)}</a></li>`);
         });
     }
+
+    setBreadcrumb(breadcrumb, path) {
+        window.Core.breadcrumbs.forEach(bc => {
+            console.log(bc.name, breadcrumb.name);
+            if (bc.name === breadcrumb.name) {
+                console.log("hi");
+                bc.path = path;
+                return;
+            }
+        });
+        console.log("hi2");
+        breadcrumb.path = path;
+        window.Core.breadcrumbs.push(breadcrumb);
+        //console.log(window.Core.breadcrumbs);
+    }
+
 
     isActive() {
         //ist ein getParameter vorhanden?

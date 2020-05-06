@@ -17,13 +17,9 @@ export default class Core_Translator {
     changeLanguageOnClickHandler() {
         $(document).on("click", ".lang", function () {
 
-            if ($(this).attr('value') === "de") {
-                window.Core.utils.setCookie("lang", "de", 1);
-                window.Core.translator.currentLanguage = "de";
-            } else if ($(this).attr('value') === "en") {
-                window.Core.utils.setCookie("lang", "en", 1);
-                window.Core.translator.currentLanguage = "en";
-            }
+
+            window.Core.utils.setCookie("lang", $(this).attr('value'), 1);
+            window.Core.translator.currentLanguage = $(this).attr('value');
 
             window.Core.initPageMarkup();
             window.dispatchEvent(new HashChangeEvent("hashchange"));
