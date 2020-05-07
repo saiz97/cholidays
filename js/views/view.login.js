@@ -20,14 +20,14 @@ export default class LoginView extends Core_View{
         if ($('#login-password').val() !== ""
             || username !== "") {
 
-            window.Core.model.idbRead("user", function (result) {
+            window.Core.model.idbReadAll("user", function (result) {
                 let existing = false;
                 result.forEach(u => {
                     if (u.name === username) existing = true;
                 });
 
                 if (!existing) {
-                    window.Core.model.idbAddUser("user", {
+                    window.Core.model.idbAdd("user", {
                         _id: result.length + 1,
                         name: username
                     }, function (response) {

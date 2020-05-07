@@ -7,17 +7,27 @@ export default class City {
     }
 
     //returns Markup for Listview of City
-    getListMarkup() {
+    async getListMarkup() {
+        //let btnClass = ;
         return `
-            <a class="city" href="#/city?id=${this["_id"]}" data-id="${this["_id"]}" style="background-image: 
-            linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(103, 126, 54, 0.3)),
-            url('${this.image}')">
-                <h1>${this.name}</h1>
-                <h4>${this.country}</h4>
-                <p>${this.nickname}</p>
-                <button type="button" class="favorite-city"><i class="fas fa-thumbs-up"></i></button>
-            </a>
-        `;
+                <a class="city" href="#/city?id=${this["_id"]}" data-id="${this["_id"]}" style="background-image: 
+                linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(103, 126, 54, 0.3)),
+                url('${this.image}')">
+                    <h1>${this.name}</h1>
+                    <h4>${this.country}</h4>
+                    <p>${this.nickname}</p>
+                    <button type="button" class="${await this.isFavoriteCity(this["_id"])}"><i class="fas fa-heart"></i></button>
+                </a>
+            `;
+    }
+
+    isFavoriteCity(city_id) {
+        return new Promise(resolve => {
+            let key = window.localStorage.getItem("username") + "&" + city_id;
+            window.Core.model.idbReadByKey("fav_cities", key, function (result) {
+                resolve((result === undefined) ? "favorite-city" : "favorite-city isFavors")
+            });
+        });
     }
 
     //returns Markup for Singleitem-View

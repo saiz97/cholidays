@@ -397,12 +397,19 @@ button.favorite-city {
   border: none;
   color: #FEFEFC;
 }
+button.favorite-city:focus {
+  outline: none;
+}
 button.favorite-city .fas,
 button.favorite-city .fa {
   font-size: 1.5rem;
 }
 button.isFavors {
-  color: #909B59;
+  color: #ff201e;
+}
+button.isFavors .fas,
+button.isFavors .fa {
+  text-shadow: 0 0 3px #FEFEFC;
 }
 @media screen and (max-width: 992px) {
   .navigation-bar .nav {

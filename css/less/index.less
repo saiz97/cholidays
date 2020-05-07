@@ -364,14 +364,19 @@ button.favorite-city {
   background: none;
   border: none;
   color: @bg-white;
-
+  &:focus {
+    outline: none;
+  }
   .fas, .fa{
     font-size: 1.5rem;
   }
 }
 
 button.isFavors{
-  color: #909B59;
+  color: @button-like;
+  .fas, .fa{
+    text-shadow: 0 0 3px @bg-white;
+  }
 }
 
 @import "_responsive";

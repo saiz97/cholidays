@@ -89,23 +89,27 @@ export default class Core_Model {
         user.createIndex("username", "username", {unique: true});
 
         let cities = db.createObjectStore("fav_cities", {keyPath: "_id"});
+        cities.createIndex("city_id", "city_id", {unique: true});
         cities.createIndex("name", "name", {unique: false});
         cities.createIndex("country", "country", {unique: false});
-        cities.createIndex("userId", "userId", {unique: false});
+        cities.createIndex("username", "username", {unique: false});
 
         let hotels = db.createObjectStore("fav_hotels", {keyPath: "_id"});
+        hotels.createIndex("hotel_id", "hotel_id", {unique: true});
         hotels.createIndex("name", "name", {unique: false});
         hotels.createIndex("city", "city", {unique: false});
         hotels.createIndex("country", "country", {unique: false});
-        hotels.createIndex("userId", "userId", {unique: false});
+        hotels.createIndex("username", "username", {unique: false});
     }
 
-    //window.Core.model.idbRead("favoriten", function(result){console.log(result);});
-    idbRead(objectStoreName, callback){
+    //window.Core.model.idbReadAll("user", function(result){console.log(result);});
+    idbReadAll(objectStoreName, callback){
         let request = this.idb.open(dbName, dbVersion);
         request.onsuccess = function(e){
             let db = e.target.result;
-            let request = db.transaction([objectStoreName], 'readonly').objectStore(objectStoreName).getAll();
+            let request = db.transaction([objectStoreName], 'readonly')
+                .objectStore(objectStoreName).getAll();
+
             request.onsuccess = function(){
                 callback(request.result);
             };
@@ -121,24 +125,77 @@ export default class Core_Model {
         }
     }
 
-    idbAddUser(objectStoreName, object, callback) {
+    idbReadByKey(objectStoreName, key, callback){
+        let request = this.idb.open(dbName, dbVersion);
+        request.onsuccess = function(e){
+            let db = e.target.result;
+            let request = db.transaction([objectStoreName], 'readonly')
+                .objectStore(objectStoreName).get(key);
+
+            request.onsuccess = function(){
+                callback(request.result);
+            };
+            request.onerror = function(e){
+                console.error(e);
+            }
+        };
+        request.onerror = function(e){
+            console.error(e);
+        };
+        request.onupgradeneeded = function(e){
+            Core_Model.upgradeDB(e);
+        }
+    }
+
+    idbAdd(objectStoreName, object, callback) {
         let request = this.idb.open(dbName, dbVersion);
 
         request.onsuccess = function(e){
             let db = e.target.result;
 
-            let transaction = db.transaction([objectStoreName], "readwrite").objectStore(objectStoreName).add(object);
+            let transaction = db.transaction([objectStoreName], "readwrite")
+                .objectStore(objectStoreName).add(object);
 
             transaction.oncomplete = function(event) {
                 console.log("idbAddUser completed!" + event);
+                callback(event);
             };
 
             transaction.onerror = function(event) {
                 console.log("idbAddUser Error!" + event);
+                callback(event);
             };
         };
         request.onerror = function(e){
             console.error(e);
+            callback(e);
+        };
+        request.onupgradeneeded = function(e){
+            Core_Model.upgradeDB(e);
+        };
+    };
+
+    idbDelete(objectStoreName, object, callback) {
+        let request = this.idb.open(dbName, dbVersion);
+
+        request.onsuccess = function(e){
+            let db = e.target.result;
+
+            let transaction = db.transaction([objectStoreName], "readwrite").objectStore(objectStoreName).delete(object);
+
+            transaction.oncomplete = function(event) {
+                console.log("idbAddUser completed!" + event);
+                callback(event);
+            };
+
+            transaction.onerror = function(event) {
+                console.log("idbAddUser Error!" + event);
+                callback(event);
+            };
+        };
+        request.onerror = function(e){
+            console.error(e);
+            callback(e);
         };
         request.onupgradeneeded = function(e){
             Core_Model.upgradeDB(e);
