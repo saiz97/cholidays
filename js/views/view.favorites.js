@@ -8,6 +8,8 @@ export default class FavoriteView extends Core_View {
 
     init() {
         super.init();
+        console.log($("nav"));
+
         this.renderFavoriteCities();
         this.initAccordion();
     }
