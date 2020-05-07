@@ -22,6 +22,7 @@ export default class Core_Model {
         }
     }
 
+    /*============CITIES============*/
     getCities() {
         return new Promise(resolve => {
             $.getJSON(cities_json, function (data) {
@@ -83,19 +84,20 @@ export default class Core_Model {
         return await this.getHotelBy("_id", id);
     }
 
+    /*============INDEXED DB============*/
     static upgradeDB(e){
         let db = e.target.result;
         let user = db.createObjectStore("user", {keyPath: "_id"});
         user.createIndex("username", "username", {unique: true});
 
         let cities = db.createObjectStore("fav_cities", {keyPath: "_id"});
-        cities.createIndex("city_id", "city_id", {unique: true});
+        cities.createIndex("city_id", "city_id", {unique: false});
         cities.createIndex("name", "name", {unique: false});
         cities.createIndex("country", "country", {unique: false});
         cities.createIndex("username", "username", {unique: false});
 
         let hotels = db.createObjectStore("fav_hotels", {keyPath: "_id"});
-        hotels.createIndex("hotel_id", "hotel_id", {unique: true});
+        hotels.createIndex("hotel_id", "hotel_id", {unique: false});
         hotels.createIndex("name", "name", {unique: false});
         hotels.createIndex("city", "city", {unique: false});
         hotels.createIndex("country", "country", {unique: false});
@@ -147,9 +149,9 @@ export default class Core_Model {
         }
     }
 
-    idbAdd(objectStoreName, object, callback) {
+    idbAdd(objectStoreName, object) {
         let request = this.idb.open(dbName, dbVersion);
-
+        console.log(objectStoreName, object);
         request.onsuccess = function(e){
             let db = e.target.result;
 
@@ -157,25 +159,22 @@ export default class Core_Model {
                 .objectStore(objectStoreName).add(object);
 
             transaction.oncomplete = function(event) {
-                console.log("idbAddUser completed!" + event);
-                callback(event);
+                console.log("idbAdd completed!", event);
             };
 
             transaction.onerror = function(event) {
-                console.log("idbAddUser Error!" + event);
-                callback(event);
+                console.log("idbAdd Error!", event);
             };
         };
         request.onerror = function(e){
             console.error(e);
-            callback(e);
         };
         request.onupgradeneeded = function(e){
             Core_Model.upgradeDB(e);
         };
     };
 
-    idbDelete(objectStoreName, object, callback) {
+    idbDelete(objectStoreName, object) {
         let request = this.idb.open(dbName, dbVersion);
 
         request.onsuccess = function(e){
@@ -184,21 +183,47 @@ export default class Core_Model {
             let transaction = db.transaction([objectStoreName], "readwrite").objectStore(objectStoreName).delete(object);
 
             transaction.oncomplete = function(event) {
-                console.log("idbAddUser completed!" + event);
-                callback(event);
+                console.log("idbAdd completed!", event);
             };
 
             transaction.onerror = function(event) {
-                console.log("idbAddUser Error!" + event);
-                callback(event);
+                console.log("idbAdd Error!", event);
             };
         };
         request.onerror = function(e){
             console.error(e);
-            callback(e);
         };
         request.onupgradeneeded = function(e){
             Core_Model.upgradeDB(e);
         };
     };
+
+    changeCityFavStatusInIdb(city) {
+        let username = window.localStorage.getItem("username");
+        let c_name = city.name;
+        let c_country = city.country;
+        let c_id = city._id;
+        let obj_key = username+"&"+c_id;
+        let favObject = {_id: obj_key, city_id: c_id, name: c_name, country: c_country, username: username};
+
+        window.Core.model.idbReadByKey("fav_cities", obj_key, (res) => {
+            if (res === undefined) window.Core.model.idbAdd("fav_cities", favObject);
+            else window.Core.model.idbDelete("fav_cities", obj_key);
+        });
+    }
+
+    changeHotelFavStatusInIdb(hotel) {
+        let username = window.localStorage.getItem("username");
+        let h_name = hotel.name;
+        let h_city = hotel.city;
+        let h_country = hotel.country;
+        let h_id = hotel._id;
+        let obj_key = username+"&"+h_id;
+        let favObject = {_id: obj_key, hotel_id: h_id, name: h_name, city: h_city, county: h_country, username: username};
+
+        window.Core.model.idbReadByKey("fav_hotels", obj_key, (res) => {
+            if (res === undefined) window.Core.model.idbAdd("fav_hotels", favObject);
+            else window.Core.model.idbDelete("fav_hotels", obj_key);
+        });
+    }
 };

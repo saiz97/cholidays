@@ -8,15 +8,14 @@ export default class City {
 
     //returns Markup for Listview of City
     async getListMarkup() {
-        //let btnClass = ;
         return `
-                <a class="city" href="#/city?id=${this["_id"]}" data-id="${this["_id"]}" style="background-image: 
-                linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(103, 126, 54, 0.3)),
+                <a class="city" href="#/city?id=${this["_id"]}" data-id="${this["_id"]}" 
+                style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(103, 126, 54, 0.3)),
                 url('${this.image}')">
+                    <button type="button" class="${await this.isFavoriteCity(this["_id"])}"><i class="fas fa-heart"></i></button>
                     <h1>${this.name}</h1>
                     <h4>${this.country}</h4>
                     <p>${this.nickname}</p>
-                    <button type="button" class="${await this.isFavoriteCity(this["_id"])}"><i class="fas fa-heart"></i></button>
                 </a>
             `;
     }
@@ -31,10 +30,11 @@ export default class City {
     }
 
     //returns Markup for Singleitem-View
-    getSingleMarkup() {
+    async getSingleMarkup() {
         return `          
-            <div class="city-banner" style="background-image: url('${this.image}')">
-                <h1>${this.name}</h1> 
+            <div class="city-banner" style="background-image: url('${this.image}')" data-id="${this["_id"]}">
+                <h1>${this.name}</h1>
+                <button type="button" class="${await this.isFavoriteCity(this["_id"])}"><i class="fas fa-heart"></i></button> 
             </div>
             <div class="city-detail">
                 <div>

@@ -26,13 +26,34 @@ export default class CityView extends Core_View{
 
     async render() {
         await this.city.loadCityMap();
-        $("#cities_detail_container").html(this.city.getSingleMarkup());
+        $("#cities_detail_container").html(await this.city.getSingleMarkup());
         $("#city-hotels").empty();
 
         for (const hotel of this.city.hotels) {
-            $("#city-hotels").append(hotel.getListMarkup());
+            $("#city-hotels").append(await hotel.getListMarkup());
         }
-        console.log("render finished");
+
+        $(".favorite-city").unbind("click").on("click", function (e) {
+            e.preventDefault();
+            let c_id = $(this).parent().data("id");
+
+            window.Core.model.getCity(c_id).then(async (res) => {
+                await window.Core.model.changeCityFavStatusInIdb(res);
+            });
+
+            $(this).toggleClass("isFavors");
+        });
+
+        $(".favorite-hotel").unbind("click").on("click", function (e) {
+            e.preventDefault();
+
+            let h_id = $($(this).parents()[1]).data("id");
+            window.Core.model.getHotel(h_id).then(async (res) => {
+                await window.Core.model.changeHotelFavStatusInIdb(res);
+            });
+
+            $(this).toggleClass("isFavors");
+        });
     }
 
     initClickListener() {

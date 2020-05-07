@@ -6,10 +6,11 @@ export default class Hotel {
     }
 
     //returns Markup for Listview of Hotel
-    getListMarkup() {
+    async getListMarkup() {
         let markup = `
-            <a class="hotel-card" href="#/hotel?id=${this["_id"]}">
+            <a class="hotel-card" href="#/hotel?id=${this["_id"]}" data-id="${this["_id"]}">
                 <div class="card-header" style="background-image: url('${this.images[0]}')">  
+                    <button type="button" class="${await this.isFavoriteHotel(this["_id"])}"><i class="fas fa-heart"></i></button>
                 </div>
                 <div class="card-body">
                     <h1>${this.name}</h1>
@@ -21,8 +22,17 @@ export default class Hotel {
         return markup;
     }
 
+    isFavoriteHotel(hotel_id) {
+        return new Promise(resolve => {
+            let key = window.localStorage.getItem("username") + "&" + hotel_id;
+            window.Core.model.idbReadByKey("fav_hotels", key, function (result) {
+                resolve((result === undefined) ? "favorite-hotel" : "favorite-hotel isFavors")
+            });
+        });
+    }
+
     //returns Markup for Singleitem-View
-    getSingleMarkup() {
+    async getSingleMarkup() {
         let markup = `
             <div id="breadcrumbs">
                 <a href="#">Home</a><span> > </span>
@@ -35,7 +45,7 @@ export default class Hotel {
                     <h4>${this.getStarRating(this.stars)} | ${this.price}€ per Night</h4>
                     <p>${this.description}</p>  
                 </div>
-                ${this.getContactInformation(this)}
+                ${await this.getContactInformation(this)}
             </div>
             
         `;
@@ -87,15 +97,22 @@ export default class Hotel {
         return slideshow;
     }
 
-    getContactInformation(hotel) {
-        let result = '<div class="hotel-contact"><table>';
+    async getContactInformation(hotel) {
+        let result = `<div class="hotel-contact" data-id="${hotel._id}"><table>`;
 
         if(hotel.address !== "") result += `<tr><td><i class="fas fa-map-marker-alt"></i></td><td>${hotel.address}</td></tr>`;
         if(hotel.email !== "") result += `<tr><td><i class="fas fa-envelope"></i></td><td><a href="mailto:${hotel.email}">${hotel.email}</a></td></tr>`;
         if(hotel.phone !== "") result += `<tr><td><i class="fas fa-phone"></i></td><td><a href="tel:${hotel.phone}">${hotel.phone}</a></td></tr>`;
         if(hotel.website !== "") result += `<tr><td><i class="fas fa-globe"></i></td><td><a href="${hotel.website}">${hotel.website.replace(/^https?\:\/\//i, "")}</a></td></tr>`;
 
-        result += '</table></div>';
+
+        result += '</table>';
+        result += `
+             <div class="${await this.isFavoriteHotel(hotel._id)}">
+                <i class="fas fa-heart"></i> ${window.Core.t("like")}
+            </div>
+            </div>`;
+
         return result;
     }
 

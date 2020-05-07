@@ -9,7 +9,7 @@
 
     <ul class="nav">
         <li class="active"><a class="homelink" href="#"><%>home<%></a></li>
-        <li><a class="homelink" href="#"><%>favorites<%></a></li>
+        <li><a class="favlink" href="#"><%>favorites<%></a></li>
     </ul>
 
     <h5 id="loggedInAs"><%>user<%><span id="currUser"></span></h5>

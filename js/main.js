@@ -5,13 +5,15 @@ import LoginView from "./views/view.login.js?v=0.1";
 import HomepageView from "./views/view.homepage.js?v=0.1";
 import CityView from "./views/view.city.js?v=0.1";
 import HotelView from "./views/view.hotel.js?v=0.1";
+import FavoriteView from "./views/view.favorites.js?v=0.1";
 
 //first route = homepage
 let routes = [
     new HomepageView("/", "homepage"),
     new LoginView("/login", "login"),
     new CityView("/city", "city"),
-    new HotelView("/hotel", "hotel")
+    new HotelView("/hotel", "hotel"),
+    new FavoriteView("/favorites", "favorites")
 ];
 
 const C_HOLIDAYS_APP = new Core_App("http://localhost/FH/JS/CHolidays/", "templates", routes, "de", "en");

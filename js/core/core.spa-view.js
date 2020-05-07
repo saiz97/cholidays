@@ -27,9 +27,13 @@ export default class Core_View{
 
     initClickListener() {
         $('.homelink').unbind("click").on("click", function (e) {
-            console.log("hi");
             e.preventDefault();
             window.location.hash = "/";
+        });
+
+        $('.favlink').unbind("click").on("click", function (e) {
+            e.preventDefault();
+            window.location.hash = "/favorites";
         });
 
         $(".lang").unbind("click").on("click", function () {

@@ -22,6 +22,7 @@ body{
 }
 
 #loggedInAs {
+  font-weight: normal;
   color: @bg-white;
   display: none;
 }
@@ -82,7 +83,7 @@ body{
   .city{
     text-decoration: none;
     font-size: 1rem;
-    margin: 2px;
+    margin: 0.2rem;
 
     background: no-repeat center center;
     -webkit-background-size: cover;
@@ -91,10 +92,18 @@ body{
     background-size: cover;
     color: @bg-white;
 
-    border: none;
+    border: 0.1rem solid @bg-green-light;
+    border-radius: 0.5rem;
     height: 30vh;
+    padding: 3% 5% 0 5%;
 
-    padding: 3% 0 0 5%;
+    display: flex;
+    flex-direction: column;
+
+    .favorite-city {
+      align-self: flex-end;
+    }
+
     h1, h4{
       margin: 0;
     }
@@ -127,6 +136,18 @@ body{
       font-size: 1.5rem;
 
       padding-left: 2rem;
+
+      position: relative;
+
+      .favorite-city{
+        position: absolute;
+        top: 1rem;
+        right: 3rem;
+
+        .fas, .fa{
+          font-size: 2.2rem;
+        }
+      }
     }
 
     .city-detail {
@@ -168,6 +189,13 @@ body{
           -moz-background-size: cover;
           -o-background-size: cover;
           background-size: cover;
+
+          position: relative;
+          .favorite-hotel {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+          }
         }
 
         .card-body {
@@ -218,6 +246,9 @@ body{
 
       .hotel-contact {
         width: 30%;
+        display: flex;
+        flex-direction: column;
+
         td {
           padding: 0.2rem;
           &:first-child{
@@ -229,6 +260,30 @@ body{
           color: @font-color;
           text-decoration: none;
         }
+
+        .favorite-hotel {
+          cursor: pointer;
+          align-self: center;
+          margin-top: 1rem;
+          padding: 0.2rem 1rem;
+
+          border-radius: 0.5rem;
+          border: 0.1rem solid @bg-green-light;
+
+          i{
+            color: @bg-green-light;
+            margin-right: 0.3rem;
+          }
+        }
+
+        .isFavors{
+          background-color: @button-like;
+          color: @bg-white;
+          i{
+            color: @bg-white;
+          }
+        }
+
       }
 
     }
@@ -294,7 +349,6 @@ body{
                 opacity: 1;
               }
             }
-
           }
 
           padding: 1rem;
@@ -360,7 +414,7 @@ body{
   }
 }
 
-button.favorite-city {
+button.favorite-city, button.favorite-hotel {
   background: none;
   border: none;
   color: @bg-white;
@@ -369,6 +423,7 @@ button.favorite-city {
   }
   .fas, .fa{
     font-size: 1.5rem;
+    text-shadow: 0 0 2px @bg-green-light;
   }
 }
 
@@ -378,5 +433,33 @@ button.isFavors{
     text-shadow: 0 0 3px @bg-white;
   }
 }
+
+#favorites-container {
+  .accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+  }
+
+  .active, .accordion:hover {
+    background-color: #ccc;
+  }
+
+  .panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+  }
+}
+
+
 
 @import "_responsive";
