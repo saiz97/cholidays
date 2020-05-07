@@ -1,5 +1,5 @@
 <div class="navigation-bar">
-    <a class="c-brand" href="#">
+    <a class="c-brand homelink" href="#">
         <i class="brand-icon fas fa-virus"></i>
         <div class="brand-name">
             <span>CORONA</span>
@@ -8,8 +8,8 @@
     </a>
 
     <ul class="nav">
-        <li class="active"><a href="#"><%>home<%></a></li>
-        <li><a href="#"><%>favorites<%></a></li>
+        <li class="active"><a class="homelink" href="#"><%>home<%></a></li>
+        <li><a class="homelink" href="#"><%>favorites<%></a></li>
     </ul>
 
     <h5 id="loggedInAs"><%>user<%><span id="currUser"></span></h5>

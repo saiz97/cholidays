@@ -9,11 +9,6 @@ export default class HomepageView extends Core_View{
     init() {
         super.init();
 
-        $('a[href="#"]').unbind("click").on("click", function (e) {
-            e.preventDefault();
-            window.location.hash = "/";
-        });
-
         $("#login").unbind("click").on("click", function (e) {
             e.preventDefault();
             window.location.hash = "/login";
@@ -29,13 +24,6 @@ export default class HomepageView extends Core_View{
             $("#currUser").text("");
 
             window.location.hash = "/login";
-        });
-
-        $(document).on("click", ".bc-cityofhotel", (e) => {
-            e.preventDefault();
-            window.Core.model.getCityBy("name", $(e.currentTarget).text()).then(function (res) {
-                window.location.hash = "#/city?id=" + res['_id'];
-            });
         });
 
         this.renderCities().then(function () {

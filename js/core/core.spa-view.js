@@ -22,6 +22,23 @@ export default class Core_View{
         if (window.Core.system.debugmode) {
             console.log("View loaded: " + this.slug);
         }
+        this.initClickListener();
+    }
+
+    initClickListener() {
+        $('.homelink').unbind("click").on("click", function (e) {
+            console.log("hi");
+            e.preventDefault();
+            window.location.hash = "/";
+        });
+
+        $(".lang").unbind("click").on("click", function () {
+            window.Core.utils.setCookie("lang", $(this).attr('value'), 1);
+            window.Core.translator.currentLanguage = $(this).attr('value');
+
+            window.Core.initPageMarkup();
+            window.dispatchEvent(new HashChangeEvent("hashchange"));
+        });
     }
 
     listen(e) {

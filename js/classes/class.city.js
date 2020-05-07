@@ -39,7 +39,7 @@ export default class City {
             <div class="city-detail">
                 <div>
                     <div id="breadcrumbs">
-                        <a href="#">Home</a><span> > </span>
+                        <a href="#" class="homelink">Home</a><span> > </span>
                         <a>${this.name}</a>
                     </div>
                     <div class="city-info">

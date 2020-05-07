@@ -13,9 +13,17 @@ export default class HotelView extends Core_View{
             window.location.hash = "/"; //lead back to homepage
         } else {
             let self = this;
-            window.Core.model.getHotel(window.Core.getParams["id"]).then(function (response) {
+            window.Core.model.getHotel(window.Core.getParams["id"]).then(async function (response) {
                 self.hotel = response;
-                self.render();
+                await self.render();
+                console.log("finished rendering hotel details");
+
+                $(".bc-cityofhotel").unbind("click").on("click", function (e) {
+                    e.preventDefault();
+                    window.Core.model.getCityBy("name", $(e.currentTarget).text()).then(function (res) {
+                        window.location.hash = "#/city?id=" + res['_id'];
+                    });
+                });
             });
         }
     }

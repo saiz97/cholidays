@@ -8,6 +8,7 @@ export default class CityView extends Core_View{
 
     init() {
         super.init();
+
         if (window.Core.utils.isEmpty(window.Core.getParams["id"])
             || window.Core.model.getCity(window.Core.getParams["id"]) === false) {
             window.location.hash = "/"; //lead back to homepage
@@ -17,8 +18,9 @@ export default class CityView extends Core_View{
                 self.city = response;
                 self.city.hotels = await window.Core.model.getHotelsOfCity(self.city.name);
                 await self.render();
+                self.initClickListener();
+                console.log("Citydetail successfully rendered");
             });
-            console.log("Citydetail successfully rendered");
         }
     }
 
@@ -30,5 +32,10 @@ export default class CityView extends Core_View{
         for (const hotel of this.city.hotels) {
             $("#city-hotels").append(hotel.getListMarkup());
         }
+        console.log("render finished");
+    }
+
+    initClickListener() {
+        super.initClickListener();
     }
 }

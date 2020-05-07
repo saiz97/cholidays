@@ -25,7 +25,7 @@ export default class Core_App{
         this.system = {
             webRoot: webRoot, //Root-URL of the App
             templatesPath: templatesPath, //path to folder container our templates
-            debugmode: true, //if actived, show debug logs in console
+            debugmode: false, //if actived, show debug logs in console
             defaultLanguage: 'de'
         };
         this.breadcrumbs = [];

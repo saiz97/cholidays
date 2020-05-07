@@ -6,23 +6,11 @@ export default class Core_Translator {
     constructor(...languages) {
         this.allowedLanguages = languages;
         this.currentLanguage = window.Core.utils.getCookie("lang") || window.Core.system.defaultLanguage;
-        this.changeLanguageOnClickHandler();
     }
 
     t(key, language = this.currentLanguage) {
         //TODO: using disallowed languages --> Bonuspunkte
         return (typeof Core_language[language][key] === "undefined") ? "-- missing translation: " + key + " --" : Core_language[language][key];
-    }
-
-    changeLanguageOnClickHandler() {
-        $(document).on("click", ".lang", function () {
-            console.log(window.Core.utils.getCookie("lang"));
-            window.Core.utils.setCookie("lang", $(this).attr('value'), 1);
-            window.Core.translator.currentLanguage = $(this).attr('value');
-
-            window.Core.initPageMarkup();
-            window.dispatchEvent(new HashChangeEvent("hashchange"));
-        });
     }
 }
 
