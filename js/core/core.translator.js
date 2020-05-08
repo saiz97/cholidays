@@ -5,12 +5,31 @@ let Core_language = {};
 export default class Core_Translator {
     constructor(...languages) {
         this.allowedLanguages = languages;
+        this.availableLanguages = ["de", "en"];
         this.currentLanguage = window.Core.utils.getCookie("lang") || window.Core.system.defaultLanguage;
+        this.checkAllowedLanguageIsGiven();
+    }
+
+    checkAllowedLanguageIsGiven() {
+        for (const allowed of this.allowedLanguages[0]) {
+            if(!this.availableLanguages.includes(allowed))
+                console.log("MESSAGE: There is no translation available for the requested language: " + allowed);
+        }
+    }
+
+    checkIfLanguageIsValid(language) {
+        for (const lang of this.availableLanguages) {
+            if(lang === language) return true;
+        }
+        return false;
     }
 
     t(key, language = this.currentLanguage) {
-        //TODO: using disallowed languages --> Bonuspunkte
-        return (typeof Core_language[language][key] === "undefined") ? "-- missing translation: " + key + " --" : Core_language[language][key];
+        if (this.checkIfLanguageIsValid(language) ){
+            return (typeof Core_language[language][key] === "undefined") ? "-- missing translation: " + key + " --" : Core_language[language][key];
+        } else {
+            console.log("ERROR: The translation for the requested language could not be generated, because it is not included in the translation database.");
+        }
     }
 }
 

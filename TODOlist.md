@@ -1,7 +1,7 @@
 ###TODO List 
 ####C-Holiday
 
-TODO #1: using disallowed languages @core.translator.js
+✔ TODO #1: using disallowed languages @core.translator.js
 
 ✔ TODO #2: Breadcrumbs  
 
@@ -27,7 +27,7 @@ fixed it by binding them and preventing Default behavior + setting up slug
 
 ✔ fixed Bug: when reloading Favorite page -> Navigation Tab not highlighted correctly
 
-Bug: Breadcrumbs incorrect, when selected on favorite view
+✔ fixed Bug: Breadcrumbs incorrect, when selected on favorite view
 _____
 ### Arbeitsaufträge
 _____
