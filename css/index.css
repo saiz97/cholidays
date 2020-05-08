@@ -153,12 +153,14 @@ body .fa-star {
   width: fit-content;
   padding: 0.5rem 2rem;
 }
-#cities_container {
+#cities_container,
+#favorite-cities-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 3rem;
 }
-#cities_container .city {
+#cities_container .city,
+#favorite-cities-container .city {
   text-decoration: none;
   font-size: 1rem;
   margin: 0.2rem;
@@ -175,11 +177,14 @@ body .fa-star {
   display: flex;
   flex-direction: column;
 }
-#cities_container .city .favorite-city {
+#cities_container .city .favorite-city,
+#favorite-cities-container .city .favorite-city {
   align-self: flex-end;
 }
 #cities_container .city h1,
-#cities_container .city h4 {
+#favorite-cities-container .city h1,
+#cities_container .city h4,
+#favorite-cities-container .city h4 {
   margin: 0;
 }
 #city_container {
@@ -232,20 +237,23 @@ body .fa-star {
 #city_container #cities_detail_container .headline-hotels {
   padding-left: 3rem;
 }
-#city_container #cities_detail_container #city-hotels {
+#city-hotels,
+#favorite-hotels-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 1rem;
   padding: 0 3rem 3rem 3rem;
 }
-#city_container #cities_detail_container #city-hotels .hotel-card {
+#city-hotels .hotel-card,
+#favorite-hotels-container .hotel-card {
   text-decoration: none;
   color: #070708;
   overflow: hidden;
   border: 0.1rem solid #909B59;
   border-radius: 0.5rem;
 }
-#city_container #cities_detail_container #city-hotels .hotel-card .card-header {
+#city-hotels .hotel-card .card-header,
+#favorite-hotels-container .hotel-card .card-header {
   height: 10rem;
   width: 100%;
   background: no-repeat center center;
@@ -255,20 +263,24 @@ body .fa-star {
   background-size: cover;
   position: relative;
 }
-#city_container #cities_detail_container #city-hotels .hotel-card .card-header .favorite-hotel {
+#city-hotels .hotel-card .card-header .favorite-hotel,
+#favorite-hotels-container .hotel-card .card-header .favorite-hotel {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
 }
-#city_container #cities_detail_container #city-hotels .hotel-card .card-body {
+#city-hotels .hotel-card .card-body,
+#favorite-hotels-container .hotel-card .card-body {
   padding: 0 0.5rem 0.5rem 0.5rem;
 }
-#city_container #cities_detail_container #city-hotels .hotel-card .card-body h1 {
+#city-hotels .hotel-card .card-body h1,
+#favorite-hotels-container .hotel-card .card-body h1 {
   font-size: 1.3rem;
   padding-bottom: 0;
   margin-bottom: 0;
 }
-#city_container #cities_detail_container #city-hotels .hotel-card .card-body h4 {
+#city-hotels .hotel-card .card-body h4,
+#favorite-hotels-container .hotel-card .card-body h4 {
   font-size: 0.8rem;
   padding: 0;
   margin: 0;
@@ -460,33 +472,13 @@ button.isFavors .fas,
 button.isFavors .fa {
   text-shadow: 0 0 3px #FEFEFC;
 }
-#favorites-container .accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
-}
-#favorites-container .active,
-#favorites-container .accordion:hover {
-  background-color: #ccc;
-}
-#favorites-container .panel {
-  padding: 0 18px;
-  display: none;
-  background-color: white;
-  overflow: hidden;
-}
 @media screen and (max-width: 992px) {
   .navigation-bar .nav {
     display: none !important;
   }
-  #cities_container {
+  #cities_container,
+  #favorite-cities-container,
+  #favorite-hotels-container {
     grid-template-columns: repeat(3, 1fr);
   }
   #cities_detail_container #city-hotels {
@@ -494,7 +486,9 @@ button.isFavors .fa {
   }
 }
 @media screen and (max-width: 768px) {
-  #cities_container {
+  #cities_container,
+  #favorite-cities-container,
+  #favorite-hotels-container {
     grid-template-columns: repeat(2, 1fr);
   }
   #cities_detail_container .city-detail {
@@ -506,7 +500,9 @@ button.isFavors .fa {
   }
 }
 @media screen and (max-width: 576px) {
-  #cities_container {
+  #cities_container,
+  #favorite-cities-container,
+  #favorite-hotels-container {
     grid-template-columns: repeat(1, 1fr);
   }
   #cities_detail_container #city-hotels {

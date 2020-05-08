@@ -7,9 +7,9 @@ TODO #1: using disallowed languages @core.translator.js
 
 ✔ TODO #3: Translate dynamic content (hoteldetail, citydetail)
 
-TODO #4: Favorite Cities + Hotels with indexedDb
+✔ TODO #4: Favorite Cities + Hotels with indexedDb
 
-TODO #5: beautify stuff :-)
+✔ TODO #5: beautify stuff :-)
 
 TODO #6: do Favorites for Cities -> view.homepage.js
         add object to database
@@ -20,9 +20,12 @@ _____
 
 ✔ fixed Bug: Login/Logout button not working, when language switch
 
-Bug: when clicking Logo or other reference article (a-tag with href="#"), then city output is doubled... why?
+✔ fixed Bug: when clicking Logo or other reference article (a-tag with href="#"), then city output is doubled... why?
 fixed it by binding them and preventing Default behavior + setting up slug
 
+Bug: favorite Hotels not loading, when City not favored 
+
+Bug: when reloading Favorite page -> Navigation Tab not highlighted correctly
 
 _____
 ####Übungsaufgabe 1:

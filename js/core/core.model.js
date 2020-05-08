@@ -226,4 +226,30 @@ export default class Core_Model {
             else window.Core.model.idbDelete("fav_hotels", obj_key);
         });
     }
+
+    getFavCitiesOfUser() {
+        return new Promise(resolve => {
+            window.Core.model.idbReadAll("fav_cities",  function (callback) {
+                let user = window.localStorage.getItem("username");
+                let res = [];
+                callback.forEach(c => {
+                    if (c.username === user) res.push(c);
+                });
+                resolve(res);
+            });
+        });
+    }
+
+    getFavHotelsOfUser() {
+        return new Promise(resolve => {
+            window.Core.model.idbReadAll("fav_hotels",  function (callback) {
+                let user = window.localStorage.getItem("username");
+                let res = [];
+                callback.forEach(c => {
+                    if (c.username === user) res.push(c);
+                });
+                resolve(res);
+            });
+        });
+    }
 };

@@ -75,7 +75,7 @@ body{
   }
 }
 
-#cities_container {
+#cities_container, #favorite-cities-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 3rem;
@@ -167,54 +167,55 @@ body{
     .headline-hotels {
       padding-left: 3rem;
     }
+  }
+}
 
-    #city-hotels {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-gap: 1rem;
-      padding: 0 3rem 3rem 3rem;
+#city-hotels, #favorite-hotels-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  padding: 0 3rem 3rem 3rem;
 
-      .hotel-card{
-        text-decoration: none;
-        color: @font-color;
-        overflow: hidden;
+  .hotel-card{
+    text-decoration: none;
+    color: @font-color;
+    overflow: hidden;
 
-        border: 0.1rem solid @bg-green-light;
-        border-radius: 0.5rem;
-        .card-header{
-          height: 10rem;
-          width: 100%;
-          background: no-repeat center center;
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover;
+    border: 0.1rem solid @bg-green-light;
+    border-radius: 0.5rem;
+    .card-header{
+      height: 10rem;
+      width: 100%;
+      background: no-repeat center center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
 
-          position: relative;
-          .favorite-hotel {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-          }
-        }
+      position: relative;
+      .favorite-hotel {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+      }
+    }
 
-        .card-body {
-          padding: 0 0.5rem 0.5rem 0.5rem;
-          h1 {
-            font-size: 1.3rem;
-            padding-bottom: 0;
-            margin-bottom: 0;
-          }
-          h4 {
-            font-size: 0.8rem;
-            padding: 0;
-            margin: 0;
-          }
-        }
+    .card-body {
+      padding: 0 0.5rem 0.5rem 0.5rem;
+      h1 {
+        font-size: 1.3rem;
+        padding-bottom: 0;
+        margin-bottom: 0;
+      }
+      h4 {
+        font-size: 0.8rem;
+        padding: 0;
+        margin: 0;
       }
     }
   }
 }
+
 
 #hotel_container{
   width: 100%;
@@ -433,33 +434,5 @@ button.isFavors{
     text-shadow: 0 0 3px @bg-white;
   }
 }
-
-#favorites-container {
-  .accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
-  }
-
-  .active, .accordion:hover {
-    background-color: #ccc;
-  }
-
-  .panel {
-    padding: 0 18px;
-    display: none;
-    background-color: white;
-    overflow: hidden;
-  }
-}
-
-
 
 @import "_responsive";
