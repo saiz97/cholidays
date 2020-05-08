@@ -8,6 +8,7 @@ export default class HomepageView extends Core_View{
 
     init() {
         super.init();
+        window.localStorage.setItem("prev", "home");
         $(".homepage").addClass("active");
         $(".favpage").removeClass("active");
 
@@ -37,7 +38,6 @@ export default class HomepageView extends Core_View{
 
     async renderCities() {
         $("#cities_container").empty();
-        console.log("hi");
         let cities = await window.Core.model.getCities();
         for (const city of cities) {
             city.hotels = await window.Core.model.getHotelsOfCity(city.name);

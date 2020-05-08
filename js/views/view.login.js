@@ -30,8 +30,6 @@ export default class LoginView extends Core_View{
                     window.Core.model.idbAdd("user", {
                         _id: result.length + 1,
                         name: username
-                    }, function (response) {
-                        console.log(response);
                     });
                 }
 

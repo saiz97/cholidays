@@ -151,7 +151,6 @@ export default class Core_Model {
 
     idbAdd(objectStoreName, object) {
         let request = this.idb.open(dbName, dbVersion);
-        console.log(objectStoreName, object);
         request.onsuccess = function(e){
             let db = e.target.result;
 

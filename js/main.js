@@ -16,4 +16,4 @@ let routes = [
     new FavoriteView("/favorites", "favorites")
 ];
 
-const C_HOLIDAYS_APP = new Core_App("http://localhost/FH/JS/CHolidays/", "templates", routes, "de", "en");
+const C_HOLIDAYS_APP = new Core_App("http://localhost/FH/JS/CHolidays/", "templates", routes, "de", "en", "ru");

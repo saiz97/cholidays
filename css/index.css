@@ -7,7 +7,7 @@
   src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
 }
 header {
-  height: 5.8em;
+  height: 4.2em;
   width: 100vw;
   max-width: 100%;
   background-color: #677E36;
@@ -37,7 +37,7 @@ header .navigation-bar .c-brand .brand-name {
 header .navigation-bar .nav {
   list-style-type: none;
   display: flex;
-  height: 5.8em;
+  height: 4.2em;
 }
 header .navigation-bar .nav li a {
   height: 100%;
@@ -70,7 +70,7 @@ header .navigation-bar #logout {
   display: none;
 }
 footer {
-  height: 4rem;
+  min-height: 4rem;
   width: 100vw;
   max-width: 100%;
   background-color: #677E36;
@@ -109,8 +109,13 @@ body #core_app {
 body .fa-star {
   color: #909B59;
 }
-.page-banner {
+#homepage .page-banner {
   background-image: linear-gradient(to bottom, #909B59, rgba(246, 233, 252, 0)), url("../img/banner1.jpg");
+}
+#favorites-container .page-banner {
+  background-image: linear-gradient(to bottom, #909B59, rgba(246, 233, 252, 0)), url("../img/banner2.jpg");
+}
+.page-banner {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 0 -25vh;
@@ -500,7 +505,7 @@ button.isFavors .fa {
   text-shadow: 0 0 3px #FEFEFC;
 }
 @media screen and (max-width: 992px) {
-  .navigation-bar .nav {
+  .navigation-bar #loggedInAs {
     display: none !important;
   }
   #cities_container,
@@ -513,6 +518,9 @@ button.isFavors .fa {
   }
 }
 @media screen and (max-width: 768px) {
+  .navigation-bar .brand-name span {
+    display: none !important;
+  }
   #cities_container,
   #favorite-cities-container,
   #favorite-hotels-container {

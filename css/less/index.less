@@ -21,8 +21,17 @@ body{
   }
 }
 
+#homepage .page-banner {
+  background-image: linear-gradient(to bottom, @bg-green-light,
+  rgba(246, 233, 252, 0)), url("./../img/banner1.jpg");
+}
+
+#favorites-container .page-banner {
+  background-image: linear-gradient(to bottom, @bg-green-light,
+  rgba(246, 233, 252, 0)), url("./../img/banner2.jpg");
+}
+
 .page-banner {
-  background-image: linear-gradient(to bottom, @bg-green-light, rgba(246, 233, 252, 0)), url("./../img/banner1.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 0 -25vh;
@@ -50,7 +59,6 @@ body{
     padding: 0;
     font-size: 2rem;
   }
-
 }
 
 #loggedInAs {

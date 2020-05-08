@@ -8,6 +8,7 @@ export default class FavoriteView extends Core_View {
 
     init() {
         super.init();
+        window.localStorage.setItem("prev", "favs");
         $(".homepage").removeClass("active");
         $(".favpage").addClass("active");
         this.renderFavCities();

@@ -35,7 +35,7 @@ export default class Hotel {
     async getSingleMarkup() {
         let markup = `
             <div id="breadcrumbs">
-                <a href="#">Home</a><span> > </span>
+                ${window.Core.checkFirstBreadcrumb()}<span> > </span>
                 <a href="" class="bc-cityofhotel">${this.city}</a><span> > </span>
                 <a>${this.name}</a>
             </div>

@@ -35,7 +35,7 @@ export default class HotelView extends Core_View{
         $(".favorite-hotel").unbind("click").on("click", function (e) {
             e.preventDefault();
             let h_id = $($(this).parent()).data("id");
-            console.log(h_id);
+
             window.Core.model.getHotel(h_id).then(async (res) => {
                 await window.Core.model.changeHotelFavStatusInIdb(res);
             });

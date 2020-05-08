@@ -69,4 +69,12 @@ export default class Core_App{
             + this.system.templatesPath
             + "/footer.tpl", document.getElementById("app_footer"), "/footer");
     }
+
+    checkFirstBreadcrumb() {
+        if (window.localStorage.getItem("prev") === "favs") {
+            return  `<a href="#" class="favlink">${this.t("favorites")}</a>`;
+        }
+
+        return `<a href="#" class="homelink">${this.t("home")}</a>`;
+    }
 }
