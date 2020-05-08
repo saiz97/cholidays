@@ -8,6 +8,8 @@ export default class HomepageView extends Core_View{
 
     init() {
         super.init();
+        $(".homepage").addClass("active");
+        $(".favpage").removeClass("active");
 
         $("#login").unbind("click").on("click", function (e) {
             e.preventDefault();
@@ -34,11 +36,12 @@ export default class HomepageView extends Core_View{
     }
 
     async renderCities() {
+        $("#cities_container").empty();
+        console.log("hi");
         let cities = await window.Core.model.getCities();
         for (const city of cities) {
             city.hotels = await window.Core.model.getHotelsOfCity(city.name);
         }
-        $("#cities_container").empty();
         for (const city of cities) {
             $("#cities_container").append(await city.getListMarkup());
         }

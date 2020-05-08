@@ -18,7 +18,6 @@ export default class CityView extends Core_View{
                 self.city = response;
                 self.city.hotels = await window.Core.model.getHotelsOfCity(self.city.name);
                 await self.render();
-                self.initClickListener();
                 console.log("Citydetail successfully rendered");
             });
         }
@@ -32,6 +31,12 @@ export default class CityView extends Core_View{
         for (const hotel of this.city.hotels) {
             $("#city-hotels").append(await hotel.getListMarkup());
         }
+
+        this.initClickListener();
+    }
+
+    initClickListener() {
+        super.initClickListener();
 
         $(".favorite-city").unbind("click").on("click", function (e) {
             e.preventDefault();
@@ -54,9 +59,5 @@ export default class CityView extends Core_View{
 
             $(this).toggleClass("isFavors");
         });
-    }
-
-    initClickListener() {
-        super.initClickListener();
     }
 }

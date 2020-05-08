@@ -11,7 +11,7 @@ TODO #1: using disallowed languages @core.translator.js
 
 ✔ TODO #5: beautify stuff :-)
 
-TODO #6: do Favorites for Cities -> view.homepage.js
+✔ TODO #6: do Favorites for Cities -> view.homepage.js
         add object to database
         check for reload if existing
         delete in database if checkedoff
@@ -23,11 +23,15 @@ _____
 ✔ fixed Bug: when clicking Logo or other reference article (a-tag with href="#"), then city output is doubled... why?
 fixed it by binding them and preventing Default behavior + setting up slug
 
-Bug: favorite Hotels not loading, when City not favored 
+✔ fixed Bug: favorite Hotels not loading, when City not favored 
 
-Bug: when reloading Favorite page -> Navigation Tab not highlighted correctly
+✔ fixed Bug: when reloading Favorite page -> Navigation Tab not highlighted correctly
 
+Bug: Breadcrumbs incorrect, when selected on favorite view
 _____
+### Arbeitsaufträge
+_____
+
 ####Übungsaufgabe 1:
 1. Konfiguriere Less für dein Projekt und deine IDE
 2. Baue eine Translation-Engine

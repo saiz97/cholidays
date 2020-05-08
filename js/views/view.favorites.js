@@ -8,54 +8,55 @@ export default class FavoriteView extends Core_View {
 
     init() {
         super.init();
-
-        console.log("favorite view");
+        $(".homepage").removeClass("active");
+        $(".favpage").addClass("active");
         this.renderFavCities();
     }
-    
-    async addHotelsToCities(favcities, favhotels) {
-        let cities = [];
 
+    //turn favored cities of idb to city objects
+    async getFavCitiesObjects(favcities) {
+        let cities = [];
         for (const fc of favcities) {
             let city = await window.Core.model.getCity(fc.city_id);
-            let hotels = await window.Core.model.getHotelsOfCity(city.name);
-
-            city.hotels = this.checkIfFavoriteHotel(hotels, favhotels);
-
-            console.log(city);
+            city.hotels = await window.Core.model.getHotelsOfCity(city.name);
             cities.push(city);
         }
-
         return cities;
     }
 
-    checkIfFavoriteHotel(hotels, favhotels) {
-        console.log(hotels, favhotels);
-        let result = [];
-        for (const hotel of hotels) {
-            for (const fav of favhotels) {
-                if (fav.hotel_id === hotel._id) result.push(hotel);
-            }
+    //turn favored hotels of idb to hotel objects
+    async getFavHotelsObjects(favhotels) {
+        let hotels = [];
+        for (const fh of favhotels) {
+            hotels.push(await window.Core.model.getHotel(fh.hotel_id));
         }
-        return result;
+        return hotels;
     }
-    
+
     async renderFavCities() {
-        let favcities = await window.Core.model.getFavCitiesOfUser();
-        let favhotels = await window.Core.model.getFavHotelsOfUser();
-        
-        let cities = await this.addHotelsToCities(favcities, favhotels);
+        let cities = await this.getFavCitiesObjects(
+            await window.Core.model.getFavCitiesOfUser());
+
+        let hotels = await this.getFavHotelsObjects(
+            await window.Core.model.getFavHotelsOfUser());
 
         $("#favorite-cities-container").empty();
+        $("#favorite-hotels-container").empty();
 
         for (const city of cities) {
             $("#favorite-cities-container").append(await city.getListMarkup());
-            for (const hotel of city.hotels) {
-                $("#favorite-hotels-container").append(await hotel.getListMarkup());
-            }
         }
 
-        //do city favorite stuff
+        for (const hotel of hotels) {
+            $("#favorite-hotels-container").append(await hotel.getListMarkup());
+        }
+
+        this.initClickListener();
+    }
+
+    initClickListener() {
+        super.initClickListener();
+
         $(".favorite-city").unbind("click").on("click", function (e) {
             e.preventDefault();
             let c_id = $(this).parent().data("id");

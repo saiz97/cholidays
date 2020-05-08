@@ -29,15 +29,11 @@ export default class Core_View{
 
         $('.homelink').unbind("click").on("click", function (e) {
             e.preventDefault();
-            $(".homepage").addClass("active");
-            $(".favpage").removeClass("active");
             window.location.hash = "/";
         });
 
         $('.favlink').unbind("click").on("click", function (e) {
             e.preventDefault();
-            $(".homepage").removeClass("active");
-            $(".favpage").addClass("active");
             window.location.hash = "/favorites";
         });
 
