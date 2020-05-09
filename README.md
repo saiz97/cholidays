@@ -1,8 +1,6 @@
 <h2>C-Holidays</h3>
 <h4>KWM227 - Clientside Web Programming</h3>
-
 <b>Author:</b> Daniel Saiz  
-<b>MatrNr:</b> s1810456031  
 
 <h4>Introduction</h4>
 C-Holidays was developed during the course CWP.
