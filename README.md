@@ -32,10 +32,9 @@ for this kind of usage. So I had to improvise and looked for a suitable site tha
 <br><br>
 
 ```javascript
-
  loadCityMap(){
      $.get({
-         url: `https://geocode.xyz/${this.name.replace(/\s+/g, '%20')}?geoit=csv`,
+         url: 'https://geocode.xyz/${this.name.replace(/\s+/g, '%20')}?geoit=csv',
          async: true
      }, (data) => {
          let lat = data.split(",")[2];
@@ -50,7 +49,6 @@ for this kind of usage. So I had to improvise and looked for a suitable site tha
          L.marker(L.latLng(lat, lng)).addTo(mymap);
      });
  }
-
 ```
 
 By using an AJAX-Call to the external website named *geocode.xyz* and adding the city name to the url. I was able to 
