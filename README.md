@@ -30,7 +30,9 @@ It was easy to implement the map for the hotels, just by using the given latitud
 the leaflet js-library. But it was not that easy to get the cities map, because no coordinates have been provided 
 for this kind of usage. So I had to improvise and looked for a suitable site that would provide me the relevant data.
 <br><br>
+
 ```javascript
+
  loadCityMap(){
      $.get({
          url: `https://geocode.xyz/${this.name.replace(/\s+/g, '%20')}?geoit=csv`,
@@ -48,7 +50,9 @@ for this kind of usage. So I had to improvise and looked for a suitable site tha
          L.marker(L.latLng(lat, lng)).addTo(mymap);
      });
  }
+
 ```
+
 By using an AJAX-Call to the external website named *geocode.xyz* and adding the city name to the url. I was able to 
 get my latitude and longitude, also for my cities.
 Unfortunately, the site throws errors if it is requested too many times in succession.
