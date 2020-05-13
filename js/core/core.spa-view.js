@@ -26,7 +26,6 @@ export default class Core_View{
     }
 
     initClickListener() {
-
         $('.homelink').unbind("click").on("click", function (e) {
             e.preventDefault();
             window.location.hash = "/";
@@ -44,6 +43,17 @@ export default class Core_View{
             window.Core.initPageMarkup();
             window.dispatchEvent(new HashChangeEvent("hashchange"));
         });
+    }
+
+    toggleSnackbarMessage() {
+        // Get the snackbar DIV
+        let snackbar = document.getElementById("snackbar");
+
+        // Add the "show" class to DIV
+        snackbar.className = "show";
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 3000);
     }
 
     listen(e) {

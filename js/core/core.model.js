@@ -199,31 +199,44 @@ export default class Core_Model {
 
     changeCityFavStatusInIdb(city) {
         let username = window.localStorage.getItem("username");
-        let c_name = city.name;
-        let c_country = city.country;
-        let c_id = city._id;
-        let obj_key = username+"&"+c_id;
-        let favObject = {_id: obj_key, city_id: c_id, name: c_name, country: c_country, username: username};
+        if (username !== null && username !== undefined) {
+            let c_name = city.name;
+            let c_country = city.country;
+            let c_id = city._id;
+            let obj_key = username+"&"+c_id;
+            let favObject = {_id: obj_key, city_id: c_id, name: c_name, country: c_country, username: username};
 
-        window.Core.model.idbReadByKey("fav_cities", obj_key, (res) => {
-            if (res === undefined) window.Core.model.idbAdd("fav_cities", favObject);
-            else window.Core.model.idbDelete("fav_cities", obj_key);
-        });
+            window.Core.model.idbReadByKey("fav_cities", obj_key, (res) => {
+                if (res === undefined) window.Core.model.idbAdd("fav_cities", favObject);
+                else window.Core.model.idbDelete("fav_cities", obj_key);
+                return true;
+            });
+        } else {
+            console.log("You have to be logged in, to favor cities.");
+            return false;
+        }
+
     }
 
     changeHotelFavStatusInIdb(hotel) {
         let username = window.localStorage.getItem("username");
-        let h_name = hotel.name;
-        let h_city = hotel.city;
-        let h_country = hotel.country;
-        let h_id = hotel._id;
-        let obj_key = username+"&"+h_id;
-        let favObject = {_id: obj_key, hotel_id: h_id, name: h_name, city: h_city, county: h_country, username: username};
+        if (username !== null && username !== undefined) {
+            let h_name = hotel.name;
+            let h_city = hotel.city;
+            let h_country = hotel.country;
+            let h_id = hotel._id;
+            let obj_key = username+"&"+h_id;
+            let favObject = {_id: obj_key, hotel_id: h_id, name: h_name, city: h_city, county: h_country, username: username};
 
-        window.Core.model.idbReadByKey("fav_hotels", obj_key, (res) => {
-            if (res === undefined) window.Core.model.idbAdd("fav_hotels", favObject);
-            else window.Core.model.idbDelete("fav_hotels", obj_key);
-        });
+            window.Core.model.idbReadByKey("fav_hotels", obj_key, (res) => {
+                if (res === undefined) window.Core.model.idbAdd("fav_hotels", favObject);
+                else window.Core.model.idbDelete("fav_hotels", obj_key);
+                return true;
+            });
+        } else {
+            console.log("You have to be logged in, to favor hotels.");
+            return false;
+        }
     }
 
     getFavCitiesOfUser() {

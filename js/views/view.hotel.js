@@ -28,16 +28,21 @@ export default class HotelView extends Core_View{
         }
     }
 
+    toggleSnackbarMessage() {
+        super.toggleSnackbarMessage();
+    }
+
     async render() {
         $("#hotels_detail_container").html(await this.hotel.getSingleMarkup());
         this.initSlider();
 
+        let self = this;
         $(".favorite-hotel").unbind("click").on("click", function (e) {
             e.preventDefault();
             let h_id = $($(this).parent()).data("id");
 
             window.Core.model.getHotel(h_id).then(async (res) => {
-                await window.Core.model.changeHotelFavStatusInIdb(res);
+                if(!await window.Core.model.changeHotelFavStatusInIdb(res)) self.toggleSnackbarMessage();
             });
 
             $(this).toggleClass("isFavors");

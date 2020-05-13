@@ -36,8 +36,13 @@ export default class HomepageView extends Core_View{
         });
     }
 
+    toggleSnackbarMessage() {
+        super.toggleSnackbarMessage();
+    }
+
     async renderCities() {
         $("#cities_container").empty();
+        let self = this;
         let cities = await window.Core.model.getCities();
         for (const city of cities) {
             city.hotels = await window.Core.model.getHotelsOfCity(city.name);
@@ -52,7 +57,7 @@ export default class HomepageView extends Core_View{
             let c_id = $(this).parent().data("id");
 
             window.Core.model.getCity(c_id).then(async (res) => {
-                await window.Core.model.changeCityFavStatusInIdb(res);
+                if(!await window.Core.model.changeCityFavStatusInIdb(res)) self.toggleSnackbarMessage();
             });
 
             $(this).toggleClass("isFavors");

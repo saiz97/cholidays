@@ -52,7 +52,8 @@ Core_language.en = {
     bc_home: "Homepage",
     bc_city: "Citydescription",
     bc_hotel: "Hoteldescription",
-    like: "I like this!"
+    like: "I like this!",
+    notloggedinToast: "You need to be logged in to favor items."
 };
 
 Core_language.de = {
@@ -74,5 +75,6 @@ Core_language.de = {
     bc_home: "Startseite",
     bc_city: "Länderbeschreibung",
     bc_hotel: "Hotelbeschreibung",
-    like: "Gefällt mir!"
+    like: "Gefällt mir!",
+    notloggedinToast: "Sie müssen eingeloggt sein, um Städte oder Hotels zu favorisieren."
 };

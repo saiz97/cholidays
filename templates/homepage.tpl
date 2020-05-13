@@ -8,4 +8,5 @@
 
         </div>
     </div>
+    <div id="snackbar"><%>notloggedinToast<%></div>
 </div>
