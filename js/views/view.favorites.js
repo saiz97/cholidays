@@ -14,6 +14,8 @@ export default class FavoriteView extends Core_View {
         this.renderFavCities();
     }
 
+
+
     //turn favored cities of idb to city objects
     async getFavCitiesObjects(favcities) {
         let cities = [];

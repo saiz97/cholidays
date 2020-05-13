@@ -183,7 +183,7 @@ body {
   min-height: 100vh;
 }
 body #core_app {
-  min-height: calc(100vh - 9.8rem);
+  min-height: calc(100vh - 8.2rem);
 }
 body .fa-star {
   color: #909B59;

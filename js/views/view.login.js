@@ -13,6 +13,9 @@ export default class LoginView extends Core_View{
             e.preventDefault();
             self.doLoginChecks();
         });
+
+        $('.homepage').removeClass('active');
+        $('.favpage').removeClass('active');
     }
 
     doLoginChecks() {

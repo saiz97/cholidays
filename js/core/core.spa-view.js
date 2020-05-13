@@ -43,6 +43,23 @@ export default class Core_View{
             window.Core.initPageMarkup();
             window.dispatchEvent(new HashChangeEvent("hashchange"));
         });
+
+        $("#login").unbind("click").on("click", function (e) {
+            e.preventDefault();
+            window.location.hash = "/login";
+        });
+
+        $("#logout").unbind("click").on("click", function (e) {
+            e.preventDefault();
+            $("#login").show();
+            $("#logout").hide();
+
+            window.localStorage.removeItem('username');
+            $("#loggedInAs").hide();
+            $("#currUser").text("");
+
+            window.location.hash = "/login";
+        });
     }
 
     toggleSnackbarMessage() {

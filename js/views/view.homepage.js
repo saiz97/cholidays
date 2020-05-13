@@ -12,23 +12,6 @@ export default class HomepageView extends Core_View{
         $(".homepage").addClass("active");
         $(".favpage").removeClass("active");
 
-        $("#login").unbind("click").on("click", function (e) {
-            e.preventDefault();
-            window.location.hash = "/login";
-        });
-
-        $("#logout").unbind("click").on("click", function (e) {
-            e.preventDefault();
-            $("#login").show();
-            $("#logout").hide();
-
-            window.localStorage.removeItem('username');
-            $("#loggedInAs").hide();
-            $("#currUser").text("");
-
-            window.location.hash = "/login";
-        });
-
         this.renderCities().then(function () {
             if (window.Core.system.debugmode) {
                 console.log("Cities successfully rendered");
@@ -57,7 +40,8 @@ export default class HomepageView extends Core_View{
             let c_id = $(this).parent().data("id");
 
             window.Core.model.getCity(c_id).then(async (res) => {
-                if(!await window.Core.model.changeCityFavStatusInIdb(res)) self.toggleSnackbarMessage();
+                if ((await window.Core.model.changeCityFavStatusInIdb(res)) === false)
+                    self.toggleSnackbarMessage();
             });
 
             $(this).toggleClass("isFavors");

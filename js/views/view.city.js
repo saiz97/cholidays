@@ -48,7 +48,8 @@ export default class CityView extends Core_View{
             let c_id = $(this).parent().data("id");
 
             window.Core.model.getCity(c_id).then(async (res) => {
-                if(!await window.Core.model.changeCityFavStatusInIdb(res)) self.toggleSnackbarMessage();
+                if((await window.Core.model.changeCityFavStatusInIdb(res)) === false)
+                    self.toggleSnackbarMessage();
             });
 
             $(this).toggleClass("isFavors");
@@ -59,7 +60,8 @@ export default class CityView extends Core_View{
 
             let h_id = $($(this).parents()[1]).data("id");
             window.Core.model.getHotel(h_id).then(async (res) => {
-                if(!await window.Core.model.changeHotelFavStatusInIdb(res)) self.toggleSnackbarMessage();
+                if((await window.Core.model.changeHotelFavStatusInIdb(res)) === false)
+                    self.toggleSnackbarMessage();
             });
 
             $(this).toggleClass("isFavors");

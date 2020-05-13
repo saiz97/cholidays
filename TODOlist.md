@@ -28,6 +28,14 @@ fixed it by binding them and preventing Default behavior + setting up slug
 ✔ fixed Bug: when reloading Favorite page -> Navigation Tab not highlighted correctly
 
 ✔ fixed Bug: Breadcrumbs incorrect, when selected on favorite view
+
+✔ fixed Bug: Its able to favor items, when not logged in -> user null is created as a placeholder in idb
+
+✔ fixed Bug: on login view -> nav item 'homepage' ist active (shouldnt be)
+
+✔ fixed Bug: snackbar message popping up, when logged in
+
+✔ fixed Bug: click handler (login/logout) on favpage not working correctly
 _____
 ### Arbeitsaufträge
 _____
