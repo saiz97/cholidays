@@ -60,26 +60,28 @@ export default class FavoriteView extends Core_View {
     initClickListener() {
         super.initClickListener();
 
-        $(".favorite-city").unbind("click").on("click", function (e) {
+        $(".favorite-city").unbind("click").on("click", async function (e) {
             e.preventDefault();
             let c_id = $(this).parent().data("id");
 
-            window.Core.model.getCity(c_id).then(async (res) => {
+            await window.Core.model.getCity(c_id).then(async (res) => {
                 await window.Core.model.changeCityFavStatusInIdb(res);
             });
 
             $(this).toggleClass("isFavors");
+            window.dispatchEvent(new HashChangeEvent("hashchange"));
         });
 
-        $(".favorite-hotel").unbind("click").on("click", function (e) {
+        $(".favorite-hotel").unbind("click").on("click", async function (e) {
             e.preventDefault();
 
             let h_id = $($(this).parents()[1]).data("id");
-            window.Core.model.getHotel(h_id).then(async (res) => {
+            await window.Core.model.getHotel(h_id).then(async (res) => {
                 await window.Core.model.changeHotelFavStatusInIdb(res);
             });
 
             $(this).toggleClass("isFavors");
+            window.dispatchEvent(new HashChangeEvent("hashchange"));
         });
     }
 }
